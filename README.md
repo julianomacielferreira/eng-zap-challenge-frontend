@@ -63,7 +63,7 @@ Redesign the presentation and visual layer of the [legacy site](http://grupozap-
 - Pagination by 20 elements.
 - **Responsive interface** (front) / **adaptable for different screens** (apps).
 
-The logic (and [business rules](https://github.com/julianomacielferreira/eng-zap-challenge-frontend/blob/master/README.md)) in this case is all in the front / app, so you will work with all data **in memory**. The _input_ must be accessed via request http (CORS friendly).
+The logic (and [business rules](https://github.com/julianomacielferreira/eng-zap-challenge-frontend#business-rules-you-need-to-implement)) in this case is all in the front / app, so you will work with all data **in memory**. The _input_ must be accessed via request http (CORS friendly).
 
 **Use your creativity** and take advantage of the property's information to show the card and the detail as you understand it would be the best form and also the most performative.
 
