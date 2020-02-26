@@ -4,6 +4,8 @@ This is the [Frontend Code Challenge](https://grupozap.github.io/cultura/challen
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.24.
 
+[Download](https://github.com/julianomacielferreira/eng-zap-challenge-frontend/archive/master.zip) this repository and follow the [installation steps](https://github.com/julianomacielferreira/eng-zap-challenge-frontend#install-dependencies) to get it up and running.
+
 # Description
 
 **The below description was taken from the [public available link](https://grupozap.github.io/cultura/challenges/engineering.html).**
