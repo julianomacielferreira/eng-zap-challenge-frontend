@@ -199,6 +199,28 @@ In case you need to validate the input and do not want to use the entire sources
 - [http://grupozap-code-challenge.s3-website-us-east-1.amazonaws.com/sources/source-sample.json](http://grupozap-code-challenge.s3-website-us-east-1.amazonaws.com/sources/source-sample.json)
 - [http://grupozap-code-challenge.s3-website-us-east-1.amazonaws.com/sources/source-sample](http://grupozap-code-challenge.s3-website-us-east-1.amazonaws.com/sources/source-sample)
 
+## Install Dependencies
+
+**1. Check if you have a recent version of [Node.js](https://nodejs.org/) (which comes bundled with [npm](https://www.npmjs.com/), a JavaScript package manager) and [Angular CLI](https://angular.io/guide/setup-local#step-1-install-the-angular-cli):**
+
+```bash
+$ node -v
+```
+
+```bash
+$ npm -v
+```
+
+```bash
+$ ng --version
+```
+
+**2. Install node modules:**
+
+```bash
+$ npm install
+```
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
@@ -222,6 +244,26 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+# Running with Docker
+
+You must have [Docker](https://docs.docker.com/install/) and [Docker Compose](https://docs.docker.com/compose/install/) installed.
+
+In the root project folder build the image and fire up the container:
+
+```bash
+$ docker-compose up -d --build
+```
+
+Open your browser to **http://localhost:4200** and you should see the app. Try making a change to the AppComponent’s template (src/app/app.component.html) within your code editor. You should see the app hot-reload. 
+
+Ensure the app is running in the browser and test hot-reloading again. 
+
+Stop the container before moving on:
+
+```bash
+$ docker-compose stop
+```
 
 # References
 
