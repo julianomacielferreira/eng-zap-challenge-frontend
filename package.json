@@ -7,7 +7,7 @@
     "build": "ng build --aot",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e --port 4300"
   },
   "private": true,
   "dependencies": {
@@ -19,8 +19,9 @@
     "@angular/platform-browser": "~8.2.14",
     "@angular/platform-browser-dynamic": "~8.2.14",
     "@angular/router": "~8.2.14",
+    "@types/jquery": "^3.3.33",
     "bootstrap": "^4.4.1",
-    "jquery-slim": "^3.0.0",
+    "jquery": "^3.4.1",
     "popper.js": "^1.16.1",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",

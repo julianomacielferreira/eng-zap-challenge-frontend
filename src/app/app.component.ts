@@ -24,10 +24,9 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
+  selector: 'mlocks-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  properties = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 }

@@ -21,4 +21,22 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+import { Component, OnInit } from '@angular/core';
+import * as $ from 'jquery';
 
+@Component({
+  selector: 'mlocks-preloader',
+  templateUrl: './preloader.component.html',
+  styleUrls: ['./preloader.component.scss']
+})
+export class PreloaderComponent implements OnInit {
+
+  constructor() { }
+
+  ngOnInit() {
+
+    $('.loader').delay(1000).fadeOut('slow');
+    $('#overlayer').delay(1000).fadeOut('slow');
+  }
+
+}

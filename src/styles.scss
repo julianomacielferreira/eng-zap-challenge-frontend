@@ -22,3 +22,15 @@
  * THE SOFTWARE.
  */
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css?family=Nunito:200,300,400,700");
+
+// Import global variables
+@import "scss/variables";
+
+// Import bootstrap 4 functios, variables and mixins
+@import "node_modules/bootstrap/scss/functions.scss";
+@import "node_modules/bootstrap/scss/variables.scss";
+@import "node_modules/bootstrap/scss/mixins.scss";
+
+// Import site-navbar
+@import "scss/site-navbar";

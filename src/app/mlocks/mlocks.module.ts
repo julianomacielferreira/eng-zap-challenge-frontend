@@ -30,6 +30,7 @@ import { StatisticsComponent } from './components/statistics/statistics.componen
 import { PropertiesComponent } from './components/properties/properties.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './pages/home/home.component';
+import { PreloaderComponent } from './components/preloader/preloader.component';
 
 
 @NgModule({
@@ -40,7 +41,8 @@ import { HomeComponent } from './pages/home/home.component';
     StatisticsComponent,
     PropertiesComponent,
     FooterComponent,
-    HomeComponent
+    HomeComponent,
+    PreloaderComponent
   ],
   imports: [
     CommonModule
@@ -52,7 +54,8 @@ import { HomeComponent } from './pages/home/home.component';
     SearchComponent,
     StatisticsComponent,
     PropertiesComponent,
-    FooterComponent
+    FooterComponent,
+    PreloaderComponent
   ]
 })
 export class MLocksModule { }
