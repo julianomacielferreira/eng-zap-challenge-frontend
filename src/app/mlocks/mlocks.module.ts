@@ -21,24 +21,35 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { MLocksModule } from './mlocks/mlocks.module';
+import { CommonModule } from '@angular/common';
+import { HeaderComponent } from './header/header.component';
+import { MenuComponent } from './menu/menu.component';
+import { SearchComponent } from './search/search.component';
+import { StatisticsComponent } from './statistics/statistics.component';
+import { PropertiesComponent } from './properties/properties.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    HeaderComponent,
+    MenuComponent,
+    SearchComponent,
+    StatisticsComponent,
+    PropertiesComponent,
+    FooterComponent
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule,
-    MLocksModule
+    CommonModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  exports: [
+    HeaderComponent,
+    MenuComponent,
+    SearchComponent,
+    StatisticsComponent,
+    PropertiesComponent,
+    FooterComponent
+  ]
 })
-export class AppModule { }
+export class MLocksModule { }
