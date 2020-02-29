@@ -31,12 +31,23 @@ import * as $ from 'jquery';
 })
 export class PreloaderComponent implements OnInit {
 
+  // Timeout to fade elements
+  private readonly TIMEOUT = 1000;
+
   constructor() { }
 
   ngOnInit() {
 
-    $('.loader').delay(1000).fadeOut('slow');
-    $('#overlayer').delay(1000).fadeOut('slow');
+    this.hideLoader();
+    this.hideOverlay();
+  }
+
+  private hideLoader(): void {
+    $('.loader').delay(this.TIMEOUT).fadeOut('slow');
+  }
+
+  private hideOverlay() {
+    $('#overlayer').delay(this.TIMEOUT).fadeOut('slow');
   }
 
 }
