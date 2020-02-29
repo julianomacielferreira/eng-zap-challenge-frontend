@@ -23,12 +23,13 @@
  */
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from './header/header.component';
-import { MenuComponent } from './menu/menu.component';
-import { SearchComponent } from './search/search.component';
-import { StatisticsComponent } from './statistics/statistics.component';
-import { PropertiesComponent } from './properties/properties.component';
-import { FooterComponent } from './footer/footer.component';
+import { HeaderComponent } from './components/header/header.component';
+import { MenuComponent } from './components/menu/menu.component';
+import { SearchComponent } from './components/search/search.component';
+import { StatisticsComponent } from './components/statistics/statistics.component';
+import { PropertiesComponent } from './components/properties/properties.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { HomeComponent } from './pages/home/home.component';
 
 
 @NgModule({
@@ -38,12 +39,14 @@ import { FooterComponent } from './footer/footer.component';
     SearchComponent,
     StatisticsComponent,
     PropertiesComponent,
-    FooterComponent
+    FooterComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule
   ],
   exports: [
+    HomeComponent,
     HeaderComponent,
     MenuComponent,
     SearchComponent,

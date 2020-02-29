@@ -21,3 +21,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'mlocks-properties',
+  templateUrl: './properties.component.html',
+  styleUrls: ['./properties.component.scss']
+})
+export class PropertiesComponent implements OnInit {
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+}

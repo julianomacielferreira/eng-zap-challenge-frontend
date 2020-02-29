@@ -21,3 +21,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'mlocks-statistics',
+  templateUrl: './statistics.component.html',
+  styleUrls: ['./statistics.component.scss']
+})
+export class StatisticsComponent implements OnInit {
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+}
