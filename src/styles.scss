@@ -34,3 +34,113 @@
 
 // Import site-navbar
 @import "scss/site-navbar";
+
+body {
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.7;
+  position: relative;
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba($black, 0.7);
+    z-index: 100;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s all ease;
+  }
+  &.offcanvas-menu {
+    position: relative;
+    &:after {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: $black;
+}
+
+.text-black {
+  color: $black !important;
+}
+
+.home-section {
+  position: relative;
+
+  > .container {
+    z-index: 2;
+    position: relative;
+  }
+
+  h1 {
+    font-size: 3rem;
+    color: $white;
+    font-weight: 200;
+    @include media-breakpoint-down(md) {
+      font-size: 2rem;
+    }
+  }
+
+  p {
+    font-size: 1.2rem;
+    color: rgba($white, 0.6);
+  }
+
+  .scroll-button {
+    position: absolute;
+    z-index: 2;
+    bottom: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: $white;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.2);
+    > span {
+      color: $black;
+      position: absolute;
+      font-size: 2rem;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+ }
+
+.bg-image {
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+
+  &.fixed {
+    background-attachment: fixed;
+  }
+
+  &.overlay-primary {
+    position: relative;
+    &:before {
+      position: absolute;
+      content: "";
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba($primary, 0.9);
+      z-index: 1;
+    }
+    > .container {
+      position: relative;
+      z-index: 2;
+    }
+  }
+}
