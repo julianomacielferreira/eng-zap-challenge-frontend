@@ -29,16 +29,18 @@
             ],
             "styles": [
               "node_modules/bootstrap/scss/bootstrap.scss",
-              "node_modules/bootstrap-select/dist/css/bootstrap-select.min.css",              
-              "src/styles.scss",
+              "node_modules/bootstrap-select/dist/css/bootstrap-select.min.css",
+              "node_modules/owl.carousel/dist/assets/owl.carousel.min.css",           
               "src/libs/fancybox-3.5.7/dist/jquery.fancybox.min.css",
-              "src/libs/icomoon/style.css"
+              "src/libs/icomoon/style.css",
+              "src/styles.scss"              
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/popper.js/dist/umd/popper.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
               "node_modules/bootstrap-select/dist/js/bootstrap-select.min.js",
+              "node_modules/owl.carousel/dist/owl.carousel.min.js",
               "src/libs/fancybox-3.5.7/dist/jquery.fancybox.min.js"              
             ]
           },
