@@ -44,7 +44,10 @@
               "node_modules/bootstrap-select/dist/js/bootstrap-select.min.js",
               "node_modules/owl.carousel/dist/owl.carousel.min.js",
               "node_modules/jquery.easing/jquery.easing.min.js",
-              "node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min.js"              
+              "node_modules/@fancyapps/fancybox/dist/jquery.fancybox.min.js",
+              "node_modules/stickyfilljs/dist/stickyfill.min.js",
+              "node_modules/waypoints/lib/jquery.waypoints.min.js",
+              "node_modules/jquery.animate-number/jquery.animateNumber.min.js"   
             ]
           },
           "configurations": {
