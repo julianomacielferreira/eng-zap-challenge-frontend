@@ -29,12 +29,14 @@
             ],
             "styles": [
               "node_modules/bootstrap/scss/bootstrap.scss",
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/libs/fancybox-3.5.7/dist/jquery.fancybox.min.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/popper.js/dist/umd/popper.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js",
+              "src/libs/fancybox-3.5.7/dist/jquery.fancybox.min.js"
             ]
           },
           "configurations": {
