@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1, 
+  "version": 1,
   "newProjectRoot": "projects",
   "projects": {
     "eng-zap-challenge-frontend": {
@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "eng-zap-challenge-frontend"
+    }
+  },
+  "defaultProject": "eng-zap-challenge-frontend",
+  "cli": {
+    "analytics": "9e67757b-ac28-4f53-8c9c-29df84a43d03"
+  }
 }
