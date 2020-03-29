@@ -26,8 +26,7 @@ import * as $ from 'jquery';
 
 @Component({
   selector: 'mlocks-preloader',
-  templateUrl: './preloader.component.html',
-  styleUrls: ['./preloader.component.scss']
+  templateUrl: './preloader.component.html'
 })
 export class PreloaderComponent implements OnInit {
 

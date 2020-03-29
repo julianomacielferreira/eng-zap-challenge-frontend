@@ -24,9 +24,8 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'mlocks-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: 'mlocks-app',
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
 }
