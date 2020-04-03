@@ -21,8 +21,18 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-/* You can add global styles to this file, and also import other style files */
-/* Move down content because we have a fixed navbar that is 3.5rem tall */
-body {
-  padding-top: 3.5rem;
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'mlocks-navbar',
+  templateUrl: './navbar.component.html',
+  styleUrls: ['./navbar.component.scss']
+})
+export class NavbarComponent implements OnInit {
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
 }

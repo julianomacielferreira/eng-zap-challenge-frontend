@@ -21,8 +21,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-/* You can add global styles to this file, and also import other style files */
-/* Move down content because we have a fixed navbar that is 3.5rem tall */
-body {
-  padding-top: 3.5rem;
-}
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { NavbarComponent } from './navbar.component';
+
+describe('NavbarComponent', () => {
+  let component: NavbarComponent;
+  let fixture: ComponentFixture<NavbarComponent>;
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ NavbarComponent ]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(NavbarComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

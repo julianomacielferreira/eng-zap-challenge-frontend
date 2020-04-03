@@ -25,16 +25,12 @@ import { Component } from '@angular/core';
 import * as $ from 'jquery';
 
 @Component({
-  selector: 'app-root',
+  selector: 'mlocks-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'eng-zap-challenge-frontend';
-
-  constructor() {
-
-  	// @TODO - Remove this.
-  	console.log($('body'));
+ 
+  constructor() {  	
   }
 }
