@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 import { Component, OnInit } from '@angular/core';
+import { PropertiesService } from './../../services/properties.service';
 
 @Component({
   selector: 'mlocks-home',
@@ -30,9 +31,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private propertiesService: PropertiesService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
 }

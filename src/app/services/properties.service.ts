@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 import { Injectable } from '@angular/core';
+import PropertiesJson from '../../assets/data/properties.json';
 
 @Injectable({
   providedIn: 'root'
@@ -29,4 +30,32 @@ import { Injectable } from '@angular/core';
 export class PropertiesService {
 
   constructor() { }
+
+  public listRentPropertiesForZAP(limit: number): void {
+
+  	console.log('Reading Rent Properties for ZAP from local json file.');
+  	//@TODO - Implement business rules
+ 	console.log(PropertiesJson);
+  }
+
+  public listSellPropertiesForZAP(limit: number): void {
+
+  	console.log('Reading Sell Properties for ZAP from local json file.');
+  	//@TODO - Implement business rules
+ 	console.log(PropertiesJson);
+  }
+
+  public listRentPropertiesForVivaReal(limit: number): void {
+
+  	console.log('Reading Rent Properties for Viva from local json file.');
+  	//@TODO - Implement business rules
+ 	console.log(PropertiesJson);
+  }
+
+  public listSellPropertiesForVivaReal(limit: number): void {
+
+  	console.log('Reading Sell Properties for Viva from local json file.');
+  	//@TODO - Implement business rules
+ 	console.log(PropertiesJson);
+  }
 }
