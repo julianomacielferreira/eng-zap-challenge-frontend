@@ -274,6 +274,8 @@ $ docker-compose stop
 
 - Bootstrap: [https://getbootstrap.com/](https://getbootstrap.com/)
 
+- Bootstrap Template: [Heroic Features](https://startbootstrap.com/templates/heroic-features/)
+
 - Font Awesome&trade;: [https://fontawesome.com/](https://fontawesome.com/)
 
 - Sass&trade;: [https://sass-lang.com/](https://sass-lang.com/)
