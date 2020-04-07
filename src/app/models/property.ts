@@ -22,4 +22,30 @@
  * THE SOFTWARE.
  */
 export class Property {
+
+	public id: string;
+	public usableAreas: number;
+	public parkingSpaces: number;
+	public images: string[];
+	public address: {
+		city: string,
+		neighborhood: string,
+		geoLocation: {
+			precision: string,
+			location: {
+				lon: number,
+				lat: number
+			}
+		}
+	};
+	public bathrooms: number;
+	public bedrooms: number;
+	public pricingInfos: {
+		period: string;
+		yearlyIptu: number,
+		price: number,
+		rentalTotalPrice: number;
+		businessType: string,
+		monthlyCondoFee: number
+	};	
 }

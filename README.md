@@ -78,13 +78,13 @@ You should use ```source-1.json``` (~400 records) as input:
 
 Now with the merger we have some changes that need to be made. The following rules need to be **added** to the existing rules mentioned at the beginning of this text:
 
-- A property is not eligible under **ANY PORTAL** if:
+- A property **is not** eligible under **ANY PORTAL** if:
     - It has ```lat``` and ```lon``` equal to 0.
 - If the property is for sale, it is eligible for the **ZAP** portal if:
     - The square meter value (```usableAreas``` key) cannot be less than / equal to $3,500.00 (just divide ```price``` by ```usableAreas``` to know the square meter value) - only considering properties that have ```usableAreas``` above 0 (properties with _usableAreas = 0_ are not eligible).
     - **When the property is within the bounding box of the surroundings of the ZAP Group** (described below), consider the 10% lower minimum property value rule.
 - If the property is for **rent**, it is eligible for the **Viva Real** portal if:
-    - The value of the condominium cannot be greater than / equal to 30% of the rental amount - only applied to properties that have a valid and numeric ```monthlyCondoFee``` (properties with non-numeric or invalid ```monthlyCondoFee``` are not eligible).
+    - The value of the condominium (```monthlyCondoFee``` key) cannot be greater than / equal to 30% of the rental amount - only applied to properties that have a valid and numeric ```monthlyCondoFee``` (properties with non-numeric or invalid ```monthlyCondoFee``` are not eligible).
     - **When the property is within the bounding box of the surroundings of the ZAP Group** (described below) consider the 50% higher maximum value rule (of the rental of the property).
 
 **Where:**
