@@ -105,6 +105,19 @@ export class PropertiesService {
     return (monthlyCondoFee < amount);
   }
 
+  private isAtGroupZAPBoundingBox(property: Property): boolean {
+
+    const MIN_LONGITUDE:number = -46.693419;;
+    const MIN_LATITUDE:number =  -23.568704;;
+    const MAX_LONGITUDE:number =  -46.641146;
+    const MAX_LATITUDE:number =  -23.546686;
+
+    const location = property.address.geoLocation.location;
+
+    return (location.lon >= MIN_LONGITUDE && location.lon <= MAX_LONGITUDE) && 
+           (location.lat >= MIN_LATITUDE && location.lat <= MAX_LATITUDE);
+  }
+
   public listRentPropertiesForZAP(limit: number, offset:number = 0): Array<Property> {
 
   	const rentPropertiesForZAP: Array<Property> = [];
@@ -124,13 +137,25 @@ export class PropertiesService {
   public listRentPropertiesForVivaReal(limit: number, offset:number = 0): Array<Property> {
 
     const rentPropertiesForVivaReal: Array<Property> = [];
+    const PERCENTAGE: number = 30;
 
     for(let property of this.properties) {
 
       // When renting and at least the amount is $4,000.00.
       if(this.isRental(property) && 
         this.isRentalTotalPriceAtLeast(property, 4000) && 
-        this.isMonthlyCondoFeeNotGreaterThanOrEqualTo(property, 30)) {
+        this.isMonthlyCondoFeeNotGreaterThanOrEqualTo(property, PERCENTAGE)) {
+
+        // When the property is within the bounding box of the surroundings of the ZAP Group, 
+        // consider the 50% higher maximum value rule (of the rental of the property).
+        if(this.isAtGroupZAPBoundingBox(property)) {
+
+          const rentalTotalPrice: number = parseInt(property.pricingInfos.rentalTotalPrice);
+
+          const FIFTY_PERCENT: number = (rentalTotalPrice * 50) / 100;
+
+          property.pricingInfos.rentalTotalPrice = (rentalTotalPrice + FIFTY_PERCENT).toString(); 
+        }
 
         rentPropertiesForVivaReal.push(property);
       }
