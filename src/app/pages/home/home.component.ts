@@ -23,6 +23,7 @@
  */
 import { Component, OnInit } from '@angular/core';
 import { PropertiesService } from './../../services/properties.service';
+import { Property } from './../../models/property';
 
 @Component({
   selector: 'mlocks-home',
@@ -31,8 +32,18 @@ import { PropertiesService } from './../../services/properties.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private propertiesService: PropertiesService) { }
+	public listRentPropertiesForZAP: Array<Property> = [];
+	public listRentPropertiesForVivaReal: Array<Property> = [];
 
-  ngOnInit(): void { }
+	constructor(private propertiesService: PropertiesService) { }
+
+	ngOnInit(): void { 
+
+		this.listRentPropertiesForZAP = this.propertiesService.listRentPropertiesForZAP(4);
+		this.listRentPropertiesForVivaReal = this.propertiesService.listRentPropertiesForVivaReal(4);
+
+		console.log(this.listRentPropertiesForZAP);
+		console.log(this.listRentPropertiesForVivaReal);
+	}
 
 }

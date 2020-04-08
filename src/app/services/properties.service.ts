@@ -39,7 +39,6 @@ export class PropertiesService {
 
   private loadElegibleProperties() : void {
 
-    // Apply the first business rule
     for(let property of PropertiesJson) {
 
       // A property is not eligible under ANY PORTAL if: It has lat and lon equal to 0.
@@ -47,7 +46,7 @@ export class PropertiesService {
 
         const validProperty = new Property();
 
-        // Not all json properties are necessary
+        // Not all Json properties are necessary
         validProperty.id = property.id,
         validProperty.usableAreas = property.usableAreas,
         validProperty.parkingSpaces = property.parkingSpaces,
@@ -71,29 +70,78 @@ export class PropertiesService {
 
   private isElegible(property: any): boolean {
 
-    const longitude = property.address.geoLocation.location.lon;
-    const latitute = property.address.geoLocation.location.lat;
+    const longitude: number = property.address.geoLocation.location.lon;
+    const latitute: number = property.address.geoLocation.location.lat;
 
     return (longitude !== 0 && latitute !== 0);
   }
 
-  public listRentPropertiesForZAP(limit: number): void {
+  private isRental(property: Property): boolean {
 
-  	console.log('Reading Rent Properties for ZAP from local json file.');
-  	//@TODO - Implement business rules
- 	  console.log(PropertiesJson);
+    const businessType: string = property.pricingInfos.businessType;
+
+    return (businessType === 'RENTAL');
+  }
+
+  private isRentalTotalPriceAtLeast(property: Property, amount: number): boolean {
+
+    const rentalTotalPrice: number = parseInt(property.pricingInfos.rentalTotalPrice);
+
+    return (rentalTotalPrice >= amount);
+  }
+
+  private isMonthlyCondoFeeNotGreaterThanOrEqualTo(property: Property, percentage: number): boolean {
+
+    // Properties with non-numeric or invalid "monthlyCondoFee" are not eligible.
+    if(property.pricingInfos.monthlyCondoFee === "0") {
+      return;
+    }
+
+    const monthlyCondoFee: number = parseInt(property.pricingInfos.monthlyCondoFee);
+
+    // "percentage" of the rental amount (rentalTotalPrice).
+    const amount: number = (parseInt(property.pricingInfos.rentalTotalPrice) * percentage) / 100;
+
+    return (monthlyCondoFee < amount);
+  }
+
+  public listRentPropertiesForZAP(limit: number, offset:number = 0): Array<Property> {
+
+  	const rentPropertiesForZAP: Array<Property> = [];
+
+    for(let property of this.properties) {
+
+      // When renting and at least the amount is $3,500.00.
+      if(this.isRental(property) && this.isRentalTotalPriceAtLeast(property, 3500)) {
+
+        rentPropertiesForZAP.push(property);
+      }
+    }
+
+ 	  return rentPropertiesForZAP.slice(offset, limit);
+  }
+
+  public listRentPropertiesForVivaReal(limit: number, offset:number = 0): Array<Property> {
+
+    const rentPropertiesForVivaReal: Array<Property> = [];
+
+    for(let property of this.properties) {
+
+      // When renting and at least the amount is $4,000.00.
+      if(this.isRental(property) && 
+        this.isRentalTotalPriceAtLeast(property, 4000) && 
+        this.isMonthlyCondoFeeNotGreaterThanOrEqualTo(property, 30)) {
+
+        rentPropertiesForVivaReal.push(property);
+      }
+    }
+
+    return rentPropertiesForVivaReal.slice(offset, limit);
   }
 
   public listSellPropertiesForZAP(limit: number): void {
 
   	console.log('Reading Sell Properties for ZAP from local json file.');
-  	//@TODO - Implement business rules
- 	  console.log(PropertiesJson);
-  }
-
-  public listRentPropertiesForVivaReal(limit: number): void {
-
-  	console.log('Reading Rent Properties for Viva from local json file.');
   	//@TODO - Implement business rules
  	  console.log(PropertiesJson);
   }
