@@ -118,6 +118,36 @@ export class PropertiesService {
            (location.lat >= MIN_LATITUDE && location.lat <= MAX_LATITUDE);
   }
 
+  private isSale(property: Property): boolean {
+
+    const businessType: string = property.pricingInfos.businessType;
+
+    return (businessType === 'SALE');
+  }
+
+  private isSaleTotalPriceAtLeast(property: Property, amount: number): boolean {
+
+    const price: number = parseInt(property.pricingInfos.price);
+
+    return (price >= amount);
+  }
+
+  private isSquareMeterValueGreaterThan(property: Property, amount: number): boolean {
+
+    const usableAreas: number = property.usableAreas;
+
+    // Only considering properties that have usableAreas above 0 (properties with usableAreas = 0 are not eligible).
+    if(usableAreas <= 0) {
+      return false;
+    }
+
+    // Divide price by usableAreas to know the square meter value
+    const squareMeterValue: number = parseInt(property.pricingInfos.price) / usableAreas;
+
+    // The square meter value  cannot be less than / equal to amount.
+    return (squareMeterValue > amount);
+  }
+
   public listRentPropertiesForZAP(limit: number, offset:number = 0): Array<Property> {
 
   	const rentPropertiesForZAP: Array<Property> = [];
@@ -142,9 +172,11 @@ export class PropertiesService {
     for(let property of this.properties) {
 
       // When renting and at least the amount is $4,000.00.
-      if(this.isRental(property) && 
-        this.isRentalTotalPriceAtLeast(property, 4000) && 
-        this.isMonthlyCondoFeeNotGreaterThanOrEqualTo(property, PERCENTAGE)) {
+      if(
+          this.isRental(property) && 
+          this.isRentalTotalPriceAtLeast(property, 4000) && 
+          this.isMonthlyCondoFeeNotGreaterThanOrEqualTo(property, PERCENTAGE)
+        ) {
 
         // When the property is within the bounding box of the surroundings of the ZAP Group, 
         // consider the 50% higher maximum value rule (of the rental of the property).
@@ -164,11 +196,34 @@ export class PropertiesService {
     return rentPropertiesForVivaReal.slice(offset, limit);
   }
 
-  public listSellPropertiesForZAP(limit: number): void {
+  public listSellPropertiesForZAP(limit: number, offset:number = 0): Array<Property> {
 
-  	console.log('Reading Sell Properties for ZAP from local json file.');
-  	//@TODO - Implement business rules
- 	  console.log(PropertiesJson);
+    const sellPropertiesForZAP: Array<Property> = [];
+
+    this.properties.forEach((property: Property) => {
+
+        if(
+            this.isSale(property) && 
+            this.isSaleTotalPriceAtLeast(property, 600000) && 
+            this.isSquareMeterValueGreaterThan(property, 3500)
+          ) {
+
+          // When the property is within the bounding box of the surroundings of the ZAP Group,
+          // consider the 10% lower minimum property value rule
+          if(this.isAtGroupZAPBoundingBox(property)) {
+
+            const price: number = parseInt(property.pricingInfos.price);
+
+            const TEN_PERCENT: number = (price * 10) / 100;
+
+            property.pricingInfos.price = (price + TEN_PERCENT).toString(); 
+          }
+
+          sellPropertiesForZAP.push(property);
+        }
+    });
+  	
+    return sellPropertiesForZAP.slice(offset, limit);
   }
 
   public listSellPropertiesForVivaReal(limit: number): void {

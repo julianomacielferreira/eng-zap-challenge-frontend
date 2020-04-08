@@ -33,14 +33,18 @@ import { Property } from './../../models/property';
 export class HomeComponent implements OnInit {
 
 	public listRentPropertiesForZAP: Array<Property> = [];
+	public listSellPropertiesForZAP: Array<Property> = [];
 	public listRentPropertiesForVivaReal: Array<Property> = [];
 
 	constructor(private propertiesService: PropertiesService) { }
 
 	ngOnInit(): void { 
 
-		this.listRentPropertiesForZAP = this.propertiesService.listRentPropertiesForZAP(4);
+		this.listRentPropertiesForZAP = this.propertiesService.listRentPropertiesForZAP(2);
+		this.listSellPropertiesForZAP = this.propertiesService.listSellPropertiesForZAP(2);
 		this.listRentPropertiesForVivaReal = this.propertiesService.listRentPropertiesForVivaReal(4);
+
+		console.log(this.listSellPropertiesForZAP);
 	}
 
 }
