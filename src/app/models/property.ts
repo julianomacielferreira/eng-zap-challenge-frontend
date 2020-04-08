@@ -41,11 +41,11 @@ export class Property {
 	public bathrooms: number;
 	public bedrooms: number;
 	public pricingInfos: {
-		period: string;
-		yearlyIptu: number,
-		price: number,
-		rentalTotalPrice: number;
-		businessType: string,
-		monthlyCondoFee: number
+		period?: string | undefined,
+		yearlyIptu: string | undefined,
+		price: string | undefined,
+		rentalTotalPrice?: string | undefined,
+		businessType: string | undefined,
+		monthlyCondoFee: string | undefined
 	};	
 }
