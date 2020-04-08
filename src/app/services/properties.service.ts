@@ -43,10 +43,7 @@ export class PropertiesService {
     for(let property of PropertiesJson) {
 
       // A property is not eligible under ANY PORTAL if: It has lat and lon equal to 0.
-      const longitude = property.address.geoLocation.location.lon;
-      const latitute = property.address.geoLocation.location.lat;
-      
-      if(longitude !== 0 && latitute !== 0) {
+      if(this.isElegible(property)) {
 
         const validProperty = new Property();
 
@@ -70,6 +67,14 @@ export class PropertiesService {
         this.properties.push(validProperty);
       }      
     }
+  }
+
+  private isElegible(property: any): boolean {
+
+    const longitude = property.address.geoLocation.location.lon;
+    const latitute = property.address.geoLocation.location.lat;
+
+    return (longitude !== 0 && latitute !== 0);
   }
 
   public listRentPropertiesForZAP(limit: number): void {
