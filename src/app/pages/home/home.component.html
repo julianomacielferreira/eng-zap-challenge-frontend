@@ -4,19 +4,25 @@
 
 	<!-- Page Features -->
     <div class="row text-center">
-    	<ng-template ngFor let-property [ngForOf]="listRentPropertiesForZAP" let-i="index">
+    	<ng-template ngFor let-property [ngForOf]="listRentPropertiesForZAP">
   			<div class="col-lg-3 col-md-6 mb-4">
 	    		<mlocks-property-card [type]="'ZAP'" [property]="property"></mlocks-property-card>
 	    	</div>
 		</ng-template>  
 
-		<ng-template ngFor let-property [ngForOf]="listSellPropertiesForZAP" let-i="index">
+		<ng-template ngFor let-property [ngForOf]="listSellPropertiesForZAP">
   			<div class="col-lg-3 col-md-6 mb-4">
 	    		<mlocks-property-card [type]="'ZAP'" [property]="property"></mlocks-property-card>
 	    	</div>
 		</ng-template>  
 
-		<ng-template ngFor let-property [ngForOf]="listRentPropertiesForVivaReal" let-i="index">
+		<ng-template ngFor let-property [ngForOf]="listRentPropertiesForVivaReal">
+  			<div class="col-lg-3 col-md-6 mb-4">
+	    		<mlocks-property-card [type]="'VivaReal'" [property]="property"></mlocks-property-card>
+	    	</div>
+		</ng-template> 
+
+		<ng-template ngFor let-property [ngForOf]="listSellPropertiesForVivaReal">
   			<div class="col-lg-3 col-md-6 mb-4">
 	    		<mlocks-property-card [type]="'VivaReal'" [property]="property"></mlocks-property-card>
 	    	</div>

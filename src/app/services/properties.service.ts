@@ -152,14 +152,15 @@ export class PropertiesService {
 
   	const rentPropertiesForZAP: Array<Property> = [];
 
-    for(let property of this.properties) {
+    this.properties.forEach((property: Property) => {
 
       // When renting and at least the amount is $3,500.00.
       if(this.isRental(property) && this.isRentalTotalPriceAtLeast(property, 3500)) {
 
         rentPropertiesForZAP.push(property);
       }
-    }
+
+    });
 
  	  return rentPropertiesForZAP.slice(offset, limit);
   }
@@ -169,7 +170,7 @@ export class PropertiesService {
     const rentPropertiesForVivaReal: Array<Property> = [];
     const PERCENTAGE: number = 30;
 
-    for(let property of this.properties) {
+    this.properties.forEach((property: Property) => {
 
       // When renting and at least the amount is $4,000.00.
       if(
@@ -191,7 +192,7 @@ export class PropertiesService {
 
         rentPropertiesForVivaReal.push(property);
       }
-    }
+    });
 
     return rentPropertiesForVivaReal.slice(offset, limit);
   }
@@ -226,10 +227,22 @@ export class PropertiesService {
     return sellPropertiesForZAP.slice(offset, limit);
   }
 
-  public listSellPropertiesForVivaReal(limit: number): void {
+  public listSellPropertiesForVivaReal(limit: number, offset:number = 0): Array<Property> {
 
-  	console.log('Reading Sell Properties for Viva from local json file.');
-  	//@TODO - Implement business rules
- 	  console.log(PropertiesJson);
+  	const sellPropertiesForVivaReal: Array<Property> = [];
+    
+    this.properties.forEach((property: Property) => {
+
+        if(
+            this.isSale(property) && 
+            this.isSaleTotalPriceAtLeast(property, 700000)
+          ) {
+
+          sellPropertiesForVivaReal.push(property);
+        }
+
+    });
+
+    return sellPropertiesForVivaReal.slice(offset, limit);
   }
 }

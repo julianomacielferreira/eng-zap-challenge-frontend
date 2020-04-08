@@ -34,7 +34,9 @@ export class HomeComponent implements OnInit {
 
 	public listRentPropertiesForZAP: Array<Property> = [];
 	public listSellPropertiesForZAP: Array<Property> = [];
+
 	public listRentPropertiesForVivaReal: Array<Property> = [];
+	public listSellPropertiesForVivaReal: Array<Property> = [];
 
 	constructor(private propertiesService: PropertiesService) { }
 
@@ -42,9 +44,9 @@ export class HomeComponent implements OnInit {
 
 		this.listRentPropertiesForZAP = this.propertiesService.listRentPropertiesForZAP(2);
 		this.listSellPropertiesForZAP = this.propertiesService.listSellPropertiesForZAP(2);
-		this.listRentPropertiesForVivaReal = this.propertiesService.listRentPropertiesForVivaReal(4);
 
-		console.log(this.listSellPropertiesForZAP);
+		this.listRentPropertiesForVivaReal = this.propertiesService.listRentPropertiesForVivaReal(2);
+		this.listSellPropertiesForVivaReal = this.propertiesService.listSellPropertiesForVivaReal(2);
 	}
 
 }
