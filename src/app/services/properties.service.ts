@@ -35,6 +35,104 @@ export class PropertiesService {
   constructor() { 
 
     this.loadElegibleProperties();
+  }  
+
+  public listRentPropertiesForZAP(limit: number, offset:number = 0): Array<Property> {
+
+  	const rentPropertiesForZAP: Array<Property> = [];
+
+    this.properties.forEach((property: Property) => {
+
+      // When renting and at least the amount is $3,500.00.
+      if(this.isRental(property) && this.isRentalTotalPriceAtLeast(property, 3500)) {
+
+        rentPropertiesForZAP.push(property);
+      }
+
+    });
+
+ 	  return rentPropertiesForZAP.slice(offset, limit);
+  }
+
+  public listRentPropertiesForVivaReal(limit: number, offset:number = 0): Array<Property> {
+
+    const rentPropertiesForVivaReal: Array<Property> = [];
+    const PERCENTAGE: number = 30;
+
+    this.properties.forEach((property: Property) => {
+
+      // When renting and at least the amount is $4,000.00.
+      if(
+          this.isRental(property) && 
+          this.isRentalTotalPriceAtLeast(property, 4000) && 
+          this.isMonthlyCondoFeeNotGreaterThanOrEqualTo(property, PERCENTAGE)
+        ) {
+
+        // When the property is within the bounding box of the surroundings of the ZAP Group, 
+        // consider the 50% higher maximum value rule (of the rental of the property).
+        if(this.isAtGroupZAPBoundingBox(property)) {
+
+          const rentalTotalPrice: number = parseInt(property.pricingInfos.rentalTotalPrice);
+
+          const FIFTY_PERCENT: number = (rentalTotalPrice * 50) / 100;
+
+          property.pricingInfos.rentalTotalPrice = (rentalTotalPrice + FIFTY_PERCENT).toString(); 
+        }
+
+        rentPropertiesForVivaReal.push(property);
+      }
+    });
+
+    return rentPropertiesForVivaReal.slice(offset, limit);
+  }
+
+  public listSellPropertiesForZAP(limit: number, offset:number = 0): Array<Property> {
+
+    const sellPropertiesForZAP: Array<Property> = [];
+
+    this.properties.forEach((property: Property) => {
+
+        if(
+            this.isSale(property) && 
+            this.isSaleTotalPriceAtLeast(property, 600000) && 
+            this.isSquareMeterValueGreaterThan(property, 3500)
+          ) {
+
+          // When the property is within the bounding box of the surroundings of the ZAP Group,
+          // consider the 10% lower minimum property value rule
+          if(this.isAtGroupZAPBoundingBox(property)) {
+
+            const price: number = parseInt(property.pricingInfos.price);
+
+            const TEN_PERCENT: number = (price * 10) / 100;
+
+            property.pricingInfos.price = (price + TEN_PERCENT).toString(); 
+          }
+
+          sellPropertiesForZAP.push(property);
+        }
+    });
+  	
+    return sellPropertiesForZAP.slice(offset, limit);
+  }
+
+  public listSellPropertiesForVivaReal(limit: number, offset:number = 0): Array<Property> {
+
+  	const sellPropertiesForVivaReal: Array<Property> = [];
+    
+    this.properties.forEach((property: Property) => {
+
+        if(
+            this.isSale(property) && 
+            this.isSaleTotalPriceAtLeast(property, 700000)
+          ) {
+
+          sellPropertiesForVivaReal.push(property);
+        }
+
+    });
+
+    return sellPropertiesForVivaReal.slice(offset, limit);
   }
 
   private loadElegibleProperties() : void {
@@ -146,103 +244,5 @@ export class PropertiesService {
 
     // The square meter value  cannot be less than / equal to amount.
     return (squareMeterValue > amount);
-  }
-
-  public listRentPropertiesForZAP(limit: number, offset:number = 0): Array<Property> {
-
-  	const rentPropertiesForZAP: Array<Property> = [];
-
-    this.properties.forEach((property: Property) => {
-
-      // When renting and at least the amount is $3,500.00.
-      if(this.isRental(property) && this.isRentalTotalPriceAtLeast(property, 3500)) {
-
-        rentPropertiesForZAP.push(property);
-      }
-
-    });
-
- 	  return rentPropertiesForZAP.slice(offset, limit);
-  }
-
-  public listRentPropertiesForVivaReal(limit: number, offset:number = 0): Array<Property> {
-
-    const rentPropertiesForVivaReal: Array<Property> = [];
-    const PERCENTAGE: number = 30;
-
-    this.properties.forEach((property: Property) => {
-
-      // When renting and at least the amount is $4,000.00.
-      if(
-          this.isRental(property) && 
-          this.isRentalTotalPriceAtLeast(property, 4000) && 
-          this.isMonthlyCondoFeeNotGreaterThanOrEqualTo(property, PERCENTAGE)
-        ) {
-
-        // When the property is within the bounding box of the surroundings of the ZAP Group, 
-        // consider the 50% higher maximum value rule (of the rental of the property).
-        if(this.isAtGroupZAPBoundingBox(property)) {
-
-          const rentalTotalPrice: number = parseInt(property.pricingInfos.rentalTotalPrice);
-
-          const FIFTY_PERCENT: number = (rentalTotalPrice * 50) / 100;
-
-          property.pricingInfos.rentalTotalPrice = (rentalTotalPrice + FIFTY_PERCENT).toString(); 
-        }
-
-        rentPropertiesForVivaReal.push(property);
-      }
-    });
-
-    return rentPropertiesForVivaReal.slice(offset, limit);
-  }
-
-  public listSellPropertiesForZAP(limit: number, offset:number = 0): Array<Property> {
-
-    const sellPropertiesForZAP: Array<Property> = [];
-
-    this.properties.forEach((property: Property) => {
-
-        if(
-            this.isSale(property) && 
-            this.isSaleTotalPriceAtLeast(property, 600000) && 
-            this.isSquareMeterValueGreaterThan(property, 3500)
-          ) {
-
-          // When the property is within the bounding box of the surroundings of the ZAP Group,
-          // consider the 10% lower minimum property value rule
-          if(this.isAtGroupZAPBoundingBox(property)) {
-
-            const price: number = parseInt(property.pricingInfos.price);
-
-            const TEN_PERCENT: number = (price * 10) / 100;
-
-            property.pricingInfos.price = (price + TEN_PERCENT).toString(); 
-          }
-
-          sellPropertiesForZAP.push(property);
-        }
-    });
-  	
-    return sellPropertiesForZAP.slice(offset, limit);
-  }
-
-  public listSellPropertiesForVivaReal(limit: number, offset:number = 0): Array<Property> {
-
-  	const sellPropertiesForVivaReal: Array<Property> = [];
-    
-    this.properties.forEach((property: Property) => {
-
-        if(
-            this.isSale(property) && 
-            this.isSaleTotalPriceAtLeast(property, 700000)
-          ) {
-
-          sellPropertiesForVivaReal.push(property);
-        }
-
-    });
-
-    return sellPropertiesForVivaReal.slice(offset, limit);
   }
 }
