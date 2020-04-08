@@ -1,1 +1,18 @@
-<p>property-card works!</p>
+<div class="card h-100">
+  <img class="card-img-top" src="{{ property.images[IMAGE_INDEX] }}" height="200" alt="">
+  <div class="card-body">
+    <h4 class="card-title">
+    	{{ property.pricingInfos.businessType }}
+    </h4>
+    <p class="card-text">
+    	<span class="badge badge-primary">{{ type }}</span> <br/>
+    	<b>Price:</b> {{ property.pricingInfos.rentalTotalPrice | currency: 'symbol': '$&nbsp;' }} <br/>
+    	<b>City:</b> {{ property.address.city }} <br/>
+    </p>
+  </div>
+  <div class="card-footer">
+    <a href="#" class="btn btn-primary">
+    	Details
+    </a>
+  </div>
+</div>

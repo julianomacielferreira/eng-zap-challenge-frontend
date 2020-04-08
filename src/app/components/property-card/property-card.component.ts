@@ -21,7 +21,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Property } from './../../models/property';
 
 @Component({
   selector: 'mlocks-property-card',
@@ -30,9 +31,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PropertyCardComponent implements OnInit {
 
-  constructor() { }
+	@Input()
+	public type: string;
 
-  ngOnInit(): void {
-  }
+	@Input() 
+	public property: Property;
+
+	public IMAGE_INDEX: number = 0;
+
+	constructor() { }
+
+	ngOnInit(): void { 
+
+		this.IMAGE_INDEX = this.getRandomInt(5);
+	}
+
+	private getRandomInt(max: number): number {
+
+		return Math.floor(Math.random() * Math.floor(max));
+	}
 
 }

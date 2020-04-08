@@ -41,9 +41,6 @@ export class HomeComponent implements OnInit {
 
 		this.listRentPropertiesForZAP = this.propertiesService.listRentPropertiesForZAP(4);
 		this.listRentPropertiesForVivaReal = this.propertiesService.listRentPropertiesForVivaReal(4);
-
-		console.log(this.listRentPropertiesForZAP);
-		console.log(this.listRentPropertiesForVivaReal);
 	}
 
 }
