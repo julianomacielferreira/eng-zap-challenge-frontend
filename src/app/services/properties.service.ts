@@ -70,110 +70,26 @@ export class PropertiesService {
 
         const property: Property = new Property(propertyJson);
 
-        if(this.isRentPropertiesForZAP(property)) {
+        if(property.isRentPropertiesForZAP()) {
 
           this.rentPropertiesForZAP.push(property);    
         }
 
-        if(this.isSellPropertiesForZAP(property)) {
+        if(property.isSellPropertiesForZAP()) {
 
           this.sellPropertiesForZAP.push(property);
         }
 
-        if(this.isRentPropertiesForVivaReal(property)) {
+        if(property.isRentPropertiesForVivaReal()) {
 
           this.rentPropertiesForVivaReal.push(property);
         }
 
-        if(this.isSellPropertiesForVivaReal(property)) {
+        if(property.isSellPropertiesForVivaReal()) {
 
           this.sellPropertiesForVivaReal.push(property);
         }
       }      
-    }
-  }
-  
-  private isRentPropertiesForZAP(property: Property): boolean {
-
-    // When renting and at least the amount is $3,500.00.
-    return (
-            this.isRental(property) && 
-            this.isRentalTotalPriceAtLeast(property, 3500)
-           );
-  }
-
-  private isSellPropertiesForZAP(property: Property): boolean {
-
-    if(
-        this.isSale(property) && 
-        this.isSaleTotalPriceAtLeast(property, 600000) && 
-        this.isSquareMeterValueGreaterThan(property, 3500)
-      ) {
-
-      this.calculateZAPBoundingBox(property);
-      
-      return true;
-    }
-
-    return false;
-  }
-
-  private isRentPropertiesForVivaReal(property: Property): boolean {
-
-    const PERCENTAGE: number = 30;
-
-    if(
-        this.isRental(property) && 
-        this.isRentalTotalPriceAtLeast(property, 4000) && 
-        this.isMonthlyCondoFeeNotGreaterThanOrEqualTo(property, PERCENTAGE)
-      ) {
-
-        this.calculateVivaRealBoundingBox(property);
-
-        return true;
-    }
-
-    return false;
-  }
-
-  private isSellPropertiesForVivaReal(property: Property): boolean {
-
-    if(
-        this.isSale(property) && 
-        this.isSaleTotalPriceAtLeast(property, 700000)
-      ) {
-
-        return true;
-    }
-
-    return false;
-  }
-
-  private calculateZAPBoundingBox(property: Property): void {
-
-      // When the property is within the bounding box of the surroundings of the ZAP Group,
-      // consider the 10% lower minimum property value rule
-      if(this.isAtGroupZAPBoundingBox(property)) {
-
-        const price: number = parseInt(property.pricingInfos.price);
-
-        const TEN_PERCENT: number = (price * 10) / 100;
-
-        property.pricingInfos.price = (price + TEN_PERCENT).toString(); 
-      }
-  }
-
-  private calculateVivaRealBoundingBox(property: Property): void {
-
-    // When the property is within the bounding box of the surroundings of the ZAP Group, 
-    // consider the 50% higher maximum value rule (of the rental of the property).
-    if(this.isAtGroupZAPBoundingBox(property)) {
-
-      const rentalTotalPrice: number = parseInt(property.pricingInfos.rentalTotalPrice);
-
-      const FIFTY_PERCENT: number = (rentalTotalPrice * 50) / 100;
-
-      property.pricingInfos.rentalTotalPrice = (rentalTotalPrice + FIFTY_PERCENT).toString(); 
     }
   }
 
@@ -183,77 +99,6 @@ export class PropertiesService {
     const latitute: number = property.address.geoLocation.location.lat;
 
     return (longitude !== 0 && latitute !== 0);
-  }
-
-  private isRental(property: Property): boolean {
-
-    const businessType: string = property.pricingInfos.businessType;
-
-    return (businessType === 'RENTAL');
-  }
-
-  private isRentalTotalPriceAtLeast(property: Property, amount: number): boolean {
-
-    const rentalTotalPrice: number = parseInt(property.pricingInfos.rentalTotalPrice);
-
-    return (rentalTotalPrice >= amount);
-  }
-
-  private isMonthlyCondoFeeNotGreaterThanOrEqualTo(property: Property, percentage: number): boolean {
-
-    // Properties with non-numeric or invalid "monthlyCondoFee" are not eligible.
-    if(property.pricingInfos.monthlyCondoFee === "0") {
-      return;
-    }
-
-    const monthlyCondoFee: number = parseInt(property.pricingInfos.monthlyCondoFee);
-
-    // "percentage" of the rental amount (rentalTotalPrice).
-    const amount: number = (parseInt(property.pricingInfos.rentalTotalPrice) * percentage) / 100;
-
-    return (monthlyCondoFee < amount);
-  }
-
-  private isAtGroupZAPBoundingBox(property: Property): boolean {
-
-    const MIN_LONGITUDE:number = -46.693419;;
-    const MIN_LATITUDE:number =  -23.568704;;
-    const MAX_LONGITUDE:number =  -46.641146;
-    const MAX_LATITUDE:number =  -23.546686;
-
-    const location = property.address.geoLocation.location;
-
-    return (location.lon >= MIN_LONGITUDE && location.lon <= MAX_LONGITUDE) && 
-           (location.lat >= MIN_LATITUDE && location.lat <= MAX_LATITUDE);
-  }
-
-  private isSale(property: Property): boolean {
-
-    const businessType: string = property.pricingInfos.businessType;
-
-    return (businessType === 'SALE');
-  }
-
-  private isSaleTotalPriceAtLeast(property: Property, amount: number): boolean {
-
-    const price: number = parseInt(property.pricingInfos.price);
-
-    return (price >= amount);
-  }
-
-  private isSquareMeterValueGreaterThan(property: Property, amount: number): boolean {
-
-    const usableAreas: number = property.usableAreas;
-
-    // Only considering properties that have usableAreas above 0 (properties with usableAreas = 0 are not eligible).
-    if(usableAreas <= 0) {
-      return false;
-    }
-
-    // Divide price by usableAreas to know the square meter value
-    const squareMeterValue: number = parseInt(property.pricingInfos.price) / usableAreas;
-
-    // The square meter value  cannot be less than / equal to amount.
-    return (squareMeterValue > amount);
-  }
+  } 
+  
 }
