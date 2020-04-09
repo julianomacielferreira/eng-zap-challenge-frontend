@@ -22,6 +22,7 @@ Below is a screenshot of the **current layout**:
 
 Below is a screenshot of the **redesigned layout**:
 ![](src/assets/screenshots/2.png)
+![](src/assets/screenshots/3.png)
 
 ## The current business rules are as follows:
 
