@@ -17,8 +17,11 @@ At the end of 2017, the country's two largest real estate portals merged. This c
 The current code is very old, simple and raw (not to say crude). It is only used as a quick reference and will serve as a reference for this _challenge_. It works like this:
 - Given a data source, it only has the logic of separating properties eligible for ZAP or Viva Real. You can see it [here](http://grupozap-code-challenge.s3-website-us-east-1.amazonaws.com/).
 
-Below is a screenshot of the current layout:
+Below is a screenshot of the **current layout**:
 ![](src/assets/screenshots/1.png)
+
+Below is a screenshot of the **redesigned layout**:
+![](src/assets/screenshots/2.png)
 
 ## The current business rules are as follows:
 
