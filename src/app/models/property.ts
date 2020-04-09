@@ -47,5 +47,28 @@ export class Property {
 		rentalTotalPrice?: string | undefined,
 		businessType: string | undefined,
 		monthlyCondoFee: string | undefined
-	};	
+	};
+
+	constructor(private property?: any) {
+
+		if(property !== undefined) {
+
+			// Not all Json properties are necessary
+			this.id = property.id,
+	        this.usableAreas = property.usableAreas,
+	        this.parkingSpaces = property.parkingSpaces,
+	        this.images = property.images,
+	        this.address = property.address,
+	        this.bathrooms = property.bathrooms,
+	        this.bedrooms = property.bedrooms,
+	        this.pricingInfos = {
+	            period: property.pricingInfos.period,
+	            yearlyIptu: property.pricingInfos.yearlyIptu,
+	            price: property.pricingInfos.price,
+	            rentalTotalPrice: property.pricingInfos.rentalTotalPrice,
+	            businessType: property.pricingInfos.businessType,
+	            monthlyCondoFee: property.pricingInfos.monthlyCondoFee
+	        };
+		}
+	}
 }

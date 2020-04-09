@@ -142,26 +142,7 @@ export class PropertiesService {
       // A property is not eligible under ANY PORTAL if: It has lat and lon equal to 0.
       if(this.isElegible(property)) {
 
-        const validProperty = new Property();
-
-        // Not all Json properties are necessary
-        validProperty.id = property.id,
-        validProperty.usableAreas = property.usableAreas,
-        validProperty.parkingSpaces = property.parkingSpaces,
-        validProperty.images = property.images,
-        validProperty.address = property.address,
-        validProperty.bathrooms = property.bathrooms,
-        validProperty.bedrooms = property.bedrooms,
-        validProperty.pricingInfos = {
-            period: property.pricingInfos.period,
-            yearlyIptu: property.pricingInfos.yearlyIptu,
-            price: property.pricingInfos.price,
-            rentalTotalPrice: property.pricingInfos.rentalTotalPrice,
-            businessType: property.pricingInfos.businessType,
-            monthlyCondoFee: property.pricingInfos.monthlyCondoFee
-        };
-
-        this.properties.push(validProperty);
+        this.properties.push(new Property(property));
       }      
     }
   }
