@@ -23,6 +23,8 @@
  */
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { PropertiesService } from './../../services/properties.service';
+import { Property } from './../../models/property';
 
 @Component({
   selector: 'mlocks-properties',
@@ -31,15 +33,44 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 })
 export class PropertiesComponent implements OnInit {
 
-	private type: string;
+	public origin: string;
+	public listProperties: Array<Property> = [];
+	public IMAGE_INDEX: number = 0;
 
-	constructor(private route: ActivatedRoute) { }
+	constructor(
+		private route: ActivatedRoute,
+		private propertiesService: PropertiesService
+	) { }
 
 	ngOnInit(): void {
 
 		this.route.params.subscribe(param => {
-			this.type = param['type'];
-			console.log(param['type']);
+
+			this.origin = param['origin'];
+
+			this.IMAGE_INDEX = this.getRandomInt(5);
+			
+			this.loadPropertiesFor();
 		});
+	}
+
+	private loadPropertiesFor(): void {
+
+		switch (this.origin) {
+			case `zap`:
+				this.listProperties = this.propertiesService.listPropertiesForZAP();
+				console.log(this.listProperties);
+				break;
+			
+			default:
+				this.listProperties = this.propertiesService.listPropertiesForVivaReal();
+				console.log(this.listProperties);
+				break;
+		}
+	}
+
+	private getRandomInt(max: number): number {
+
+		return Math.floor(Math.random() * Math.floor(max));
 	}
 }

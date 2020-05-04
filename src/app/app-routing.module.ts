@@ -29,7 +29,7 @@ import { PropertyDetailComponent } from './pages/property-detail/property-detail
 
 const routes: Routes = [
 	{ path: 'home', component: HomeComponent },
-	{ path: 'properties/:type', component: PropertiesComponent },
+	{ path: 'properties/:origin', component: PropertiesComponent },
 	{ path: 'property-detail/:id', component: PropertyDetailComponent },
 	{ path: '', redirectTo: '/home', pathMatch: 'full' }, // redirect to `home`
 	{ path: '**', component: HomeComponent }  // Wildcard route for a 404 page

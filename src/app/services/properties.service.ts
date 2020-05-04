@@ -30,16 +30,28 @@ import PropertiesJson from './../../assets/data/properties.json';
 })
 export class PropertiesService {
 
+  private propertiesForZAP: Array<Property> = [];
   private rentPropertiesForZAP: Array<Property> = [];
   private sellPropertiesForZAP: Array<Property> = [];
 
+  private propertiesForVivaReal: Array<Property> = [];
   private rentPropertiesForVivaReal: Array<Property> = [];
   private sellPropertiesForVivaReal: Array<Property> = [];
 
   constructor() { 
 
     this.loadElegibleProperties();
-  }  
+  }
+
+  public listPropertiesForZAP():  Array<Property> {
+
+    return this.propertiesForZAP;
+  }
+
+  public listPropertiesForVivaReal():  Array<Property> {
+    
+    return this.propertiesForVivaReal;
+  }
 
   public listRentPropertiesForZAP(limit: number, offset:number = 0): Array<Property> {
 
@@ -72,22 +84,26 @@ export class PropertiesService {
 
         if(property.isRentPropertiesForZAP()) {
 
-          this.rentPropertiesForZAP.push(property);    
+          this.rentPropertiesForZAP.push(property); 
+          this.propertiesForZAP.push(property);   
         }
 
         if(property.isSellPropertiesForZAP()) {
 
           this.sellPropertiesForZAP.push(property);
+          this.propertiesForZAP.push(property);   
         }
 
         if(property.isRentPropertiesForVivaReal()) {
 
           this.rentPropertiesForVivaReal.push(property);
+          this.propertiesForVivaReal.push(property);
         }
 
         if(property.isSellPropertiesForVivaReal()) {
 
           this.sellPropertiesForVivaReal.push(property);
+          this.propertiesForVivaReal.push(property);
         }
       }      
     }
