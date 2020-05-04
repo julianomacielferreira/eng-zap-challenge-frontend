@@ -21,7 +21,7 @@ Below is the screenshots of the **current layout (from ZAP public link)** and **
 
 | Current             |  Redesigned |
 :-------------------------:|:-------------------------:
-![](src/assets/screenshots/1.png) | ![](src/assets/screenshots/2.png)
+![](src/assets/screenshots/1.png) | ![](src/assets/screenshots/2.png) ![](src/assets/screenshots/3.png) ![](src/assets/screenshots/4.png)
 
 ## The current business rules are as follows:
 
