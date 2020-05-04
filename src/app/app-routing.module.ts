@@ -24,10 +24,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
+import { PropertiesComponent } from './pages/properties/properties.component';
+import { PropertyDetailComponent } from './pages/property-detail/property-detail.component';
 
 const routes: Routes = [
 	{ path: 'home', component: HomeComponent },
-	{ path: '', redirectTo: '/home', pathMatch: 'full' }
+	{ path: 'properties/:type', component: PropertiesComponent },
+	{ path: 'property-detail/:id', component: PropertyDetailComponent },
+	{ path: '', redirectTo: '/home', pathMatch: 'full' }, // redirect to `home`
+	{ path: '**', component: HomeComponent }  // Wildcard route for a 404 page
 ];
 
 @NgModule({
