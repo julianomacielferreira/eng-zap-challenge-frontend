@@ -90,7 +90,7 @@ Now with the merger we have some changes that need to be made. The following rul
     - The value of the condominium (```monthlyCondoFee``` key) cannot be greater than / equal to 30% of the rental amount - only applied to properties that have a valid and numeric ```monthlyCondoFee``` (properties with non-numeric or invalid ```monthlyCondoFee``` are not eligible).
     - **When the property is within the bounding box of the surroundings of the ZAP Group** (described below) consider the 50% higher maximum value rule (of the rental of the property).
 
-All the code handling the above business rules are implemented in this model class:
+All the code handling the above business rules are implemented in this [model class](https://github.com/julianomacielferreira/eng-zap-challenge-frontend/blob/master/src/app/models/property.ts):
 
 ```javascript
 export class Property {
