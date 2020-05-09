@@ -19,7 +19,20 @@
 	      <div class="card-body">
 	        <h5 class="card-title">{{ property.pricingInfos.businessType }}</h5>
 	        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-	        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+	        <p>
+	        	<ng-template [ngIf]="property.pricingInfos.rentalTotalPrice && property.pricingInfos.businessType === 'RENTAL'">
+		        	<b>Rent Price:</b> {{ property.pricingInfos.rentalTotalPrice | currency: 'symbol': '$&nbsp;' }} <br />
+		      	</ng-template>
+		      	<ng-template [ngIf]="property.pricingInfos.price && property.pricingInfos.businessType === 'SALE'">
+		        	<b>Price:</b> {{ property.pricingInfos.price | currency: 'symbol': '$&nbsp;' }} <br />
+		      	</ng-template>       	
+	        </p>
+	        <p>
+	        	<b>City:</b> {{ property.address.city }}
+	        </p>
+	        <a [routerLink]="['/property-detail', property.id]" class="btn btn-primary">
+		      Details
+		    </a>
 	      </div>
 	    </div>
 	  </div>
