@@ -58,18 +58,15 @@ export class PropertiesComponent implements OnInit {
 
 	private loadPropertiesFor(): void {
 
-		switch (this.origin) {
-			case `zap`:
-				this.listProperties = this.propertiesService.listPropertiesForZAP(this.PAGE_LIMIT, 0);
-				this.calculatePagination(this.propertiesService.totalPropertiesForZAP());
-				console.log(this.listProperties);
-				break;
-			
-			default:
-				this.listProperties = this.propertiesService.listPropertiesForVivaReal(this.PAGE_LIMIT, 0);
-				this.calculatePagination(this.propertiesService.totalPropertiesForVivaReal());
-				console.log(this.listProperties);
-				break;
+		if(this.origin === `zap`) {
+
+			this.listProperties = this.propertiesService.listPropertiesForZAP(this.PAGE_LIMIT, 0);
+			this.calculatePagination(this.propertiesService.totalPropertiesForZAP());
+
+		} else {
+
+			this.listProperties = this.propertiesService.listPropertiesForVivaReal(this.PAGE_LIMIT, 0);
+			this.calculatePagination(this.propertiesService.totalPropertiesForVivaReal());
 		}
 	}
 
