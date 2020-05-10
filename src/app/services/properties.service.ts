@@ -43,9 +43,9 @@ export class PropertiesService {
     this.loadElegibleProperties();
   }
 
-  public listPropertiesForZAP(limit: number, offset:number = 0): Array<Property> {
+  public listPropertiesForZAP(start: number, end:number): Array<Property> {
 
-    return this.propertiesForZAP.slice(offset, limit);
+    return this.propertiesForZAP.slice(start, end);
   }
 
   public totalPropertiesForZAP(): number {
@@ -53,9 +53,9 @@ export class PropertiesService {
     return this.propertiesForZAP.length;
   }
 
-  public listPropertiesForVivaReal(limit: number, offset:number = 0): Array<Property> {
+  public listPropertiesForVivaReal(start: number, end:number): Array<Property> {
     
-    return this.propertiesForVivaReal.slice(offset, limit);
+    return this.propertiesForVivaReal.slice(start, end);
   }
 
   public totalPropertiesForVivaReal(): number {
@@ -63,24 +63,24 @@ export class PropertiesService {
     return this.propertiesForVivaReal.length;
   }
 
-  public listRentPropertiesForZAP(limit: number, offset:number = 0): Array<Property> {
+  public listRentPropertiesForZAP(start: number, end:number): Array<Property> {
 
-    return this.rentPropertiesForZAP.slice(offset, limit);
+    return this.rentPropertiesForZAP.slice(start, end);
   }
 
-  public listSellPropertiesForZAP(limit: number, offset:number = 0): Array<Property> {
+  public listSellPropertiesForZAP(start: number, end:number): Array<Property> {
 
-    return this.sellPropertiesForZAP.slice(offset, limit);
+    return this.sellPropertiesForZAP.slice(start, end);
   }
 
-  public listRentPropertiesForVivaReal(limit: number, offset:number = 0): Array<Property> {
+  public listRentPropertiesForVivaReal(start: number, end:number): Array<Property> {
 
-    return this.rentPropertiesForVivaReal.slice(offset, limit);
+    return this.rentPropertiesForVivaReal.slice(start, end);
   }
 
-  public listSellPropertiesForVivaReal(limit: number, offset:number = 0): Array<Property> {
+  public listSellPropertiesForVivaReal(start: number, end:number): Array<Property> {
 
-    return this.sellPropertiesForVivaReal.slice(offset, limit);
+    return this.sellPropertiesForVivaReal.slice(start, end);
   }
 
   private loadElegibleProperties() : void {

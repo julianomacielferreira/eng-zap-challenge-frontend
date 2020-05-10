@@ -23,6 +23,7 @@
  */
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { Observable, of } from 'rxjs';
 import { PropertiesService } from './../../services/properties.service';
 import { Property } from './../../models/property';
 
@@ -34,9 +35,10 @@ import { Property } from './../../models/property';
 export class PropertiesComponent implements OnInit {
 
 	public origin: string;
-	public listProperties: Array<Property> = [];
+	public listProperties: Observable<Array<Property>>;
 	public propertiesTotal: Array<number> = [];
 	public IMAGE_INDEX: number = 0;
+	public CURRENT_PAGE: number = 1;
 	private PAGE_LIMIT: number = 20;
 
 	constructor(
@@ -56,16 +58,33 @@ export class PropertiesComponent implements OnInit {
 		});
 	}
 
+	public changePageTo(page: number): void {
+
+		this.CURRENT_PAGE = page;
+
+		const end: number = this.PAGE_LIMIT * page;
+		const start: number = end - this.PAGE_LIMIT;
+			
+		if(this.origin === `zap`) {
+
+			this.listProperties = of(this.propertiesService.listPropertiesForZAP(start, end));
+
+		} else {
+
+			this.listProperties = of(this.propertiesService.listPropertiesForVivaReal(start, end));
+		}		
+	}
+
 	private loadPropertiesFor(): void {
 
 		if(this.origin === `zap`) {
 
-			this.listProperties = this.propertiesService.listPropertiesForZAP(this.PAGE_LIMIT, 0);
+			this.listProperties = of(this.propertiesService.listPropertiesForZAP(0, this.PAGE_LIMIT));
 			this.calculatePagination(this.propertiesService.totalPropertiesForZAP());
 
 		} else {
 
-			this.listProperties = this.propertiesService.listPropertiesForVivaReal(this.PAGE_LIMIT, 0);
+			this.listProperties = of(this.propertiesService.listPropertiesForVivaReal(0, this.PAGE_LIMIT));
 			this.calculatePagination(this.propertiesService.totalPropertiesForVivaReal());
 		}
 	}
@@ -74,8 +93,7 @@ export class PropertiesComponent implements OnInit {
 
 		const pages: number = Math.ceil(total / this.PAGE_LIMIT);
 
-		this.propertiesTotal = Array(pages).fill(pages).map((x,i)=> ++i);
-				
+		this.propertiesTotal = Array(pages).fill(pages).map((x,i)=> ++i);				
 	}
 
 	private getRandomInt(max: number): number {
