@@ -21,14 +21,13 @@
 	        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
 	        <p>
 	        	<ng-template [ngIf]="property.pricingInfos.rentalTotalPrice && property.pricingInfos.businessType === 'RENTAL'">
-		        	<b>Rent Price:</b> {{ property.pricingInfos.rentalTotalPrice | currency: 'symbol': '$&nbsp;' }} <br />
+		        	<b>Rent Price:</b> {{ property.pricingInfos.rentalTotalPrice | currency: 'symbol': '$&nbsp;' }}
 		      	</ng-template>
 		      	<ng-template [ngIf]="property.pricingInfos.price && property.pricingInfos.businessType === 'SALE'">
-		        	<b>Price:</b> {{ property.pricingInfos.price | currency: 'symbol': '$&nbsp;' }} <br />
+		        	<b>Price:</b> {{ property.pricingInfos.price | currency: 'symbol': '$&nbsp;' }}
 		      	</ng-template>       	
-	        </p>
-	        <p>
-	        	<b>City:</b> {{ property.address.city }}
+	        	&nbsp;&nbsp;<b>City:</b> {{ property.address.city }}
+	        	&nbsp;&nbsp;<b>Usable Areas:</b> {{property.usableAreas}} &#13217;
 	        </p>
 	        <a [routerLink]="['/property-detail', property.id]" class="btn btn-primary">
 		      Details
@@ -38,6 +37,21 @@
 	  </div>
 	</div>
 	</ng-template> 	
+	<nav aria-label="Page navigation example">
+	  <ul class="pagination">
+	    <li class="page-item">
+	    	<a class="page-link" href="#">Previous</a>
+	    </li>
+	    <ng-template ngFor let-i [ngForOf]="propertiesTotal">
+		    <li class="page-item">
+		    	<a class="page-link" href="#">{{ i }}</a>
+		    </li>
+		</ng-template>
+	    <li class="page-item">
+	    	<a class="page-link" href="#">Next</a>
+	    </li>
+	  </ul>
+	</nav>
 </div>
 
 

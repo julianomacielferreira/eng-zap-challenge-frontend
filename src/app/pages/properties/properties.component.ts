@@ -35,7 +35,9 @@ export class PropertiesComponent implements OnInit {
 
 	public origin: string;
 	public listProperties: Array<Property> = [];
+	public propertiesTotal: Array<number> = [];
 	public IMAGE_INDEX: number = 0;
+	private PAGE_LIMIT: number = 20;
 
 	constructor(
 		private route: ActivatedRoute,
@@ -58,15 +60,25 @@ export class PropertiesComponent implements OnInit {
 
 		switch (this.origin) {
 			case `zap`:
-				this.listProperties = this.propertiesService.listPropertiesForZAP();
+				this.listProperties = this.propertiesService.listPropertiesForZAP(this.PAGE_LIMIT, 0);
+				this.calculatePagination(this.propertiesService.totalPropertiesForZAP());
 				console.log(this.listProperties);
 				break;
 			
 			default:
-				this.listProperties = this.propertiesService.listPropertiesForVivaReal();
+				this.listProperties = this.propertiesService.listPropertiesForVivaReal(this.PAGE_LIMIT, 0);
+				this.calculatePagination(this.propertiesService.totalPropertiesForVivaReal());
 				console.log(this.listProperties);
 				break;
 		}
+	}
+
+	private calculatePagination(total): void {
+
+		const pages: number = Math.ceil(total / this.PAGE_LIMIT);
+
+		this.propertiesTotal = Array(pages).fill(pages).map((x,i)=> ++i);
+				
 	}
 
 	private getRandomInt(max: number): number {

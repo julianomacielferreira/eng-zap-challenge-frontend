@@ -43,14 +43,24 @@ export class PropertiesService {
     this.loadElegibleProperties();
   }
 
-  public listPropertiesForZAP():  Array<Property> {
+  public listPropertiesForZAP(limit: number, offset:number = 0): Array<Property> {
 
-    return this.propertiesForZAP;
+    return this.propertiesForZAP.slice(offset, limit);
   }
 
-  public listPropertiesForVivaReal():  Array<Property> {
+  public totalPropertiesForZAP(): number {
+
+    return this.propertiesForZAP.length;
+  }
+
+  public listPropertiesForVivaReal(limit: number, offset:number = 0): Array<Property> {
     
-    return this.propertiesForVivaReal;
+    return this.propertiesForVivaReal.slice(offset, limit);
+  }
+
+  public totalPropertiesForVivaReal(): number {
+    
+    return this.propertiesForVivaReal.length;
   }
 
   public listRentPropertiesForZAP(limit: number, offset:number = 0): Array<Property> {
