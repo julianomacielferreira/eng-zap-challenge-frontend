@@ -36,7 +36,9 @@ export class PropertiesComponent implements OnInit {
 
 	public origin: string;
 	public listProperties: Observable<Array<Property>>;
-	public propertiesTotal: Array<number> = [];
+	public totalPages: Array<number> = [];
+	public disabledPrevious: boolean = true;
+	public disabledNext: boolean;
 	public IMAGE_INDEX: number = 0;
 	public CURRENT_PAGE: number = 1;
 	private PAGE_LIMIT: number = 20;
@@ -62,6 +64,8 @@ export class PropertiesComponent implements OnInit {
 
 		this.CURRENT_PAGE = page;
 
+		this.controlPaginationButtons();
+
 		const end: number = this.PAGE_LIMIT * page;
 		const start: number = end - this.PAGE_LIMIT;
 			
@@ -73,6 +77,56 @@ export class PropertiesComponent implements OnInit {
 
 			this.listProperties = of(this.propertiesService.listPropertiesForVivaReal(start, end));
 		}		
+	}
+
+	public previous(): void {
+
+		if(this.CURRENT_PAGE === 1) {
+
+			this.disablePaginationButtons(true, false);
+			
+		} else {
+			this.CURRENT_PAGE--;
+			this.changePageTo(this.CURRENT_PAGE);
+
+			this.disablePaginationButtons(false, false);
+		}
+	}
+
+	public next(): void {
+
+		if(this.CURRENT_PAGE === this.totalPages.length) {
+
+			this.disablePaginationButtons(false, true);
+
+		} else {
+			this.CURRENT_PAGE++;
+			this.changePageTo(this.CURRENT_PAGE);
+
+			this.disablePaginationButtons(false, false);
+		}
+	}
+
+	private controlPaginationButtons(): void {
+
+		if(this.CURRENT_PAGE === 1) {
+
+			this.disablePaginationButtons(true, false);
+
+		} else if(this.CURRENT_PAGE === this.totalPages.length) {
+
+			this.disablePaginationButtons(false, true);
+
+		} else {
+
+			this.disablePaginationButtons(false, false);
+		}
+	}
+
+	private disablePaginationButtons(previousBtn: boolean, nextBtn: boolean): void {
+
+		this.disabledPrevious = previousBtn;
+		this.disabledNext = nextBtn;
 	}
 
 	private loadPropertiesFor(): void {
@@ -93,7 +147,7 @@ export class PropertiesComponent implements OnInit {
 
 		const pages: number = Math.ceil(total / this.PAGE_LIMIT);
 
-		this.propertiesTotal = Array(pages).fill(pages).map((x,i)=> ++i);				
+		this.totalPages = Array(pages).fill(pages).map((x,i)=> ++i);				
 	}
 
 	private getRandomInt(max: number): number {
