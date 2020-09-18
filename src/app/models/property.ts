@@ -216,7 +216,7 @@ export class Property {
 
 	private calculateVivaRealBoundingBox(): void {
 
-		// When the property is within the bounding box of the surroundings of the ZAP Group, 
+		// When the property is within the bounding box of the surroundings of the ZAP Group,
 		// consider the 50% higher maximum value rule (of the rental of the property).
 		if (this.isAtGroupZAPBoundingBox()) {
 
