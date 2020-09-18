@@ -26,9 +26,9 @@ import { PropertiesService } from './../../services/properties.service';
 import { Property } from './../../models/property';
 
 @Component({
-  selector: 'mlocks-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+	selector: 'mlocks-home',
+	templateUrl: './home.component.html',
+	styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
 
@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
 
 	constructor(private propertiesService: PropertiesService) { }
 
-	ngOnInit(): void { 
+	ngOnInit(): void {
 
 		this.listRentPropertiesForZAP = this.propertiesService.listRentPropertiesForZAP(0, 2);
 		this.listSellPropertiesForZAP = this.propertiesService.listSellPropertiesForZAP(0, 2);

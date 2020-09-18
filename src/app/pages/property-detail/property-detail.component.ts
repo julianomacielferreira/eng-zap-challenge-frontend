@@ -22,6 +22,9 @@
  * THE SOFTWARE.
  */
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Property } from 'src/app/models/property';
+import { PropertiesService } from 'src/app/services/properties.service';
 
 @Component({
   selector: 'mlocks-property-detail',
@@ -30,9 +33,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PropertyDetailComponent implements OnInit {
 
-  constructor() { }
+  private origin: string;
+  private id: string;
+  public property: Property;
+
+  constructor(
+    private route: ActivatedRoute,
+    private propertiesService: PropertiesService
+  ) { }
 
   ngOnInit(): void {
+
+    this.origin = this.route.snapshot.paramMap.get('origin');
+    this.id = this.route.snapshot.paramMap.get('id');
+    this.property = this.propertiesService.propertiesMap.get(this.id);
+
+    console.log(this.property);
   }
 
 }

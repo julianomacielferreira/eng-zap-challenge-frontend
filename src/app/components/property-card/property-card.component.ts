@@ -25,23 +25,23 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Property } from './../../models/property';
 
 @Component({
-  selector: 'mlocks-property-card',
-  templateUrl: './property-card.component.html',
-  styleUrls: ['./property-card.component.scss']
+	selector: 'mlocks-property-card',
+	templateUrl: './property-card.component.html',
+	styleUrls: ['./property-card.component.scss']
 })
 export class PropertyCardComponent implements OnInit {
 
 	@Input()
 	public type: string;
 
-	@Input() 
+	@Input()
 	public property: Property;
 
-	public IMAGE_INDEX: number = 0;
+	public IMAGE_INDEX = 0;
 
 	constructor() { }
 
-	ngOnInit(): void { 
+	ngOnInit(): void {
 
 		this.IMAGE_INDEX = this.getRandomInt(5);
 	}

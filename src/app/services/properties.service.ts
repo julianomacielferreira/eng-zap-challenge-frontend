@@ -30,6 +30,7 @@ import PropertiesJson from './../../assets/data/properties.json';
 })
 export class PropertiesService {
 
+  public propertiesMap: Map<string, Property> = new Map<string, Property>();
   private propertiesForZAP: Array<Property> = [];
   private rentPropertiesForZAP: Array<Property> = [];
   private sellPropertiesForZAP: Array<Property> = [];
@@ -38,12 +39,12 @@ export class PropertiesService {
   private rentPropertiesForVivaReal: Array<Property> = [];
   private sellPropertiesForVivaReal: Array<Property> = [];
 
-  constructor() { 
+  constructor() {
 
     this.loadElegibleProperties();
   }
 
-  public listPropertiesForZAP(start: number, end:number): Array<Property> {
+  public listPropertiesForZAP(start: number, end: number): Array<Property> {
 
     return this.propertiesForZAP.slice(start, end);
   }
@@ -53,69 +54,72 @@ export class PropertiesService {
     return this.propertiesForZAP.length;
   }
 
-  public listPropertiesForVivaReal(start: number, end:number): Array<Property> {
-    
+  public listPropertiesForVivaReal(start: number, end: number): Array<Property> {
+
     return this.propertiesForVivaReal.slice(start, end);
   }
 
   public totalPropertiesForVivaReal(): number {
-    
+
     return this.propertiesForVivaReal.length;
   }
 
-  public listRentPropertiesForZAP(start: number, end:number): Array<Property> {
+  public listRentPropertiesForZAP(start: number, end: number): Array<Property> {
 
     return this.rentPropertiesForZAP.slice(start, end);
   }
 
-  public listSellPropertiesForZAP(start: number, end:number): Array<Property> {
+  public listSellPropertiesForZAP(start: number, end: number): Array<Property> {
 
     return this.sellPropertiesForZAP.slice(start, end);
   }
 
-  public listRentPropertiesForVivaReal(start: number, end:number): Array<Property> {
+  public listRentPropertiesForVivaReal(start: number, end: number): Array<Property> {
 
     return this.rentPropertiesForVivaReal.slice(start, end);
   }
 
-  public listSellPropertiesForVivaReal(start: number, end:number): Array<Property> {
+  public listSellPropertiesForVivaReal(start: number, end: number): Array<Property> {
 
     return this.sellPropertiesForVivaReal.slice(start, end);
   }
 
-  private loadElegibleProperties() : void {
+  private loadElegibleProperties(): void {
 
-    for(let propertyJson of PropertiesJson) {
+    for (const propertyJson of PropertiesJson) {
 
       // A property is not eligible under ANY PORTAL if: It has lat and lon equal to 0.
-      if(this.isElegible(propertyJson)) {
+      if (this.isElegible(propertyJson)) {
 
         const property: Property = new Property(propertyJson);
 
-        if(property.isRentPropertiesForZAP()) {
+        // Add to the map using the id as key to be recovered later
+        this.propertiesMap.set(property.id, property);
 
-          this.rentPropertiesForZAP.push(property); 
-          this.propertiesForZAP.push(property);   
+        if (property.isRentPropertiesForZAP()) {
+
+          this.rentPropertiesForZAP.push(property);
+          this.propertiesForZAP.push(property);
         }
 
-        if(property.isSellPropertiesForZAP()) {
+        if (property.isSellPropertiesForZAP()) {
 
           this.sellPropertiesForZAP.push(property);
-          this.propertiesForZAP.push(property);   
+          this.propertiesForZAP.push(property);
         }
 
-        if(property.isRentPropertiesForVivaReal()) {
+        if (property.isRentPropertiesForVivaReal()) {
 
           this.rentPropertiesForVivaReal.push(property);
           this.propertiesForVivaReal.push(property);
         }
 
-        if(property.isSellPropertiesForVivaReal()) {
+        if (property.isSellPropertiesForVivaReal()) {
 
           this.sellPropertiesForVivaReal.push(property);
           this.propertiesForVivaReal.push(property);
         }
-      }      
+      }
     }
   }
 
@@ -125,6 +129,6 @@ export class PropertiesService {
     const latitute: number = property.address.geoLocation.location.lat;
 
     return (longitude !== 0 && latitute !== 0);
-  } 
-  
+  }
+
 }

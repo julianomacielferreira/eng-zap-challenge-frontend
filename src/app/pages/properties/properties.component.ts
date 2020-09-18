@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { PropertiesService } from './../../services/properties.service';
 import { Property } from './../../models/property';
@@ -30,128 +30,118 @@ import { Property } from './../../models/property';
 @Component({
   selector: 'mlocks-properties',
   templateUrl: './properties.component.html',
-  styleUrls: ['./properties.component.scss']
+  styleUrls: ['./properties.component.scss'],
 })
 export class PropertiesComponent implements OnInit {
 
-	public origin: string;
-	public listProperties: Observable<Array<Property>>;
-	public totalPages: Array<number> = [];
-	public disabledPrevious: boolean = true;
-	public disabledNext: boolean;
-	public IMAGE_INDEX: number = 0;
-	public CURRENT_PAGE: number = 1;
-	private PAGE_LIMIT: number = 20;
+  public origin: string;
+  public listProperties: Observable<Array<Property>>;
+  public totalPages: Array<number> = [];
+  public disabledPrevious = true;
+  public disabledNext: boolean;
+  public IMAGE_INDEX = 0;
+  public CURRENT_PAGE = 1;
+  private PAGE_LIMIT = 20;
 
-	constructor(
-		private route: ActivatedRoute,
-		private propertiesService: PropertiesService
-	) { }
+  constructor(
+    private route: ActivatedRoute,
+    private propertiesService: PropertiesService
+  ) { }
 
-	ngOnInit(): void {
+  ngOnInit(): void {
+    this.route.params.subscribe((param) => {
+      this.origin = param.origin;
 
-		this.route.params.subscribe(param => {
+      this.IMAGE_INDEX = this.getRandomInt(5);
 
-			this.origin = param['origin'];
+      this.loadPropertiesFor();
+    });
+  }
 
-			this.IMAGE_INDEX = this.getRandomInt(5);
-			
-			this.loadPropertiesFor();
-		});
-	}
+  public changePageTo(page: number): void {
+    this.CURRENT_PAGE = page;
 
-	public changePageTo(page: number): void {
+    this.controlPaginationButtons();
 
-		this.CURRENT_PAGE = page;
+    const end: number = this.PAGE_LIMIT * page;
+    const start: number = end - this.PAGE_LIMIT;
 
-		this.controlPaginationButtons();
+    if (this.origin === `zap`) {
+      this.listProperties = of(
+        this.propertiesService.listPropertiesForZAP(start, end)
+      );
+    } else {
+      this.listProperties = of(
+        this.propertiesService.listPropertiesForVivaReal(start, end)
+      );
+    }
+  }
 
-		const end: number = this.PAGE_LIMIT * page;
-		const start: number = end - this.PAGE_LIMIT;
-			
-		if(this.origin === `zap`) {
+  public previous(): void {
+    if (this.CURRENT_PAGE === 1) {
+      this.disablePaginationButtons(true, false);
+    } else {
+      this.CURRENT_PAGE--;
+      this.changePageTo(this.CURRENT_PAGE);
 
-			this.listProperties = of(this.propertiesService.listPropertiesForZAP(start, end));
+      this.disablePaginationButtons(false, false);
+    }
+  }
 
-		} else {
+  public next(): void {
+    if (this.CURRENT_PAGE === this.totalPages.length) {
+      this.disablePaginationButtons(false, true);
+    } else {
+      this.CURRENT_PAGE++;
+      this.changePageTo(this.CURRENT_PAGE);
 
-			this.listProperties = of(this.propertiesService.listPropertiesForVivaReal(start, end));
-		}		
-	}
+      this.disablePaginationButtons(false, false);
+    }
+  }
 
-	public previous(): void {
+  private controlPaginationButtons(): void {
+    if (this.CURRENT_PAGE === 1) {
+      this.disablePaginationButtons(true, false);
+    } else if (this.CURRENT_PAGE === this.totalPages.length) {
+      this.disablePaginationButtons(false, true);
+    } else {
+      this.disablePaginationButtons(false, false);
+    }
+  }
 
-		if(this.CURRENT_PAGE === 1) {
+  private disablePaginationButtons(
+    previousBtn: boolean,
+    nextBtn: boolean
+  ): void {
+    this.disabledPrevious = previousBtn;
+    this.disabledNext = nextBtn;
+  }
 
-			this.disablePaginationButtons(true, false);
-			
-		} else {
-			this.CURRENT_PAGE--;
-			this.changePageTo(this.CURRENT_PAGE);
+  private loadPropertiesFor(): void {
+    if (this.origin === `zap`) {
+      this.listProperties = of(
+        this.propertiesService.listPropertiesForZAP(0, this.PAGE_LIMIT)
+      );
+      this.calculatePagination(this.propertiesService.totalPropertiesForZAP());
+    } else {
+      this.listProperties = of(
+        this.propertiesService.listPropertiesForVivaReal(0, this.PAGE_LIMIT)
+      );
+      this.calculatePagination(
+        this.propertiesService.totalPropertiesForVivaReal()
+      );
+    }
+  }
 
-			this.disablePaginationButtons(false, false);
-		}
-	}
+  private calculatePagination(total): void {
+    const pages: number = Math.ceil(total / this.PAGE_LIMIT);
 
-	public next(): void {
+    this.totalPages = Array(pages)
+      .fill(pages)
+      .map((x, i) => ++i);
+  }
 
-		if(this.CURRENT_PAGE === this.totalPages.length) {
-
-			this.disablePaginationButtons(false, true);
-
-		} else {
-			this.CURRENT_PAGE++;
-			this.changePageTo(this.CURRENT_PAGE);
-
-			this.disablePaginationButtons(false, false);
-		}
-	}
-
-	private controlPaginationButtons(): void {
-
-		if(this.CURRENT_PAGE === 1) {
-
-			this.disablePaginationButtons(true, false);
-
-		} else if(this.CURRENT_PAGE === this.totalPages.length) {
-
-			this.disablePaginationButtons(false, true);
-
-		} else {
-
-			this.disablePaginationButtons(false, false);
-		}
-	}
-
-	private disablePaginationButtons(previousBtn: boolean, nextBtn: boolean): void {
-
-		this.disabledPrevious = previousBtn;
-		this.disabledNext = nextBtn;
-	}
-
-	private loadPropertiesFor(): void {
-
-		if(this.origin === `zap`) {
-
-			this.listProperties = of(this.propertiesService.listPropertiesForZAP(0, this.PAGE_LIMIT));
-			this.calculatePagination(this.propertiesService.totalPropertiesForZAP());
-
-		} else {
-
-			this.listProperties = of(this.propertiesService.listPropertiesForVivaReal(0, this.PAGE_LIMIT));
-			this.calculatePagination(this.propertiesService.totalPropertiesForVivaReal());
-		}
-	}
-
-	private calculatePagination(total): void {
-
-		const pages: number = Math.ceil(total / this.PAGE_LIMIT);
-
-		this.totalPages = Array(pages).fill(pages).map((x,i)=> ++i);				
-	}
-
-	private getRandomInt(max: number): number {
-
-		return Math.floor(Math.random() * Math.floor(max));
-	}
+  private getRandomInt(max: number): number {
+    return Math.floor(Math.random() * Math.floor(max));
+  }
 }

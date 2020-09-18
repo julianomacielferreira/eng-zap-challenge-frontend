@@ -1,24 +1,62 @@
 <div class="card h-100">
-  <img class="card-img-top" src="{{ property.images[IMAGE_INDEX] }}" height="200" alt="">
+  <img
+    class="card-img-top"
+    src="{{ property.images[IMAGE_INDEX] }}"
+    height="200"
+    alt=""
+  />
   <div class="card-body">
     <h4 class="card-title">
       {{ property.pricingInfos.businessType }}
     </h4>
     <p class="card-text">
-      <span class="badge" [ngClass]="{'badge-primary': type === 'ZAP', 'badge-info': type === 'VivaReal'}">
+      <span
+        class="badge"
+        [ngClass]="{
+          'badge-primary': type === 'ZAP',
+          'badge-info': type === 'VivaReal'
+        }"
+      >
         {{ type }}
-      </span> <br />
-      <ng-template [ngIf]="property.pricingInfos.rentalTotalPrice && property.pricingInfos.businessType === 'RENTAL'">
-        <b>Rent Price:</b> {{ property.pricingInfos.rentalTotalPrice | currency: 'symbol': '$&nbsp;' }} <br />
+      </span>
+      <br />
+      <ng-template
+        [ngIf]="
+          property.pricingInfos.rentalTotalPrice &&
+          property.pricingInfos.businessType === 'RENTAL'
+        "
+      >
+        <b>Rent Price:</b>
+        {{
+          property.pricingInfos.rentalTotalPrice | currency: "symbol":"$&nbsp;"
+        }}
+        <br />
       </ng-template>
-      <ng-template [ngIf]="property.pricingInfos.price && property.pricingInfos.businessType === 'SALE'">
-        <b>Price:</b> {{ property.pricingInfos.price | currency: 'symbol': '$&nbsp;' }} <br />
+      <ng-template
+        [ngIf]="
+          property.pricingInfos.price &&
+          property.pricingInfos.businessType === 'SALE'
+        "
+      >
+        <b>Price:</b>
+        {{ property.pricingInfos.price | currency: "symbol":"$&nbsp;" }} <br />
       </ng-template>
       <b>City:</b> {{ property.address.city }} <br />
     </p>
   </div>
   <div class="card-footer">
-    <a [routerLink]="['/property-detail', property.id]" class="btn btn-primary">
+    <a
+      [routerLink]="[
+        '/property-detail',
+        type === 'VivaReal' ? 'viva-real' : type.toLowerCase(),
+        property.id
+      ]"
+      class="btn"
+      [ngClass]="{
+        'btn-primary': type === 'ZAP',
+        'btn-info': type === 'VivaReal'
+      }"
+    >
       Details
     </a>
   </div>
