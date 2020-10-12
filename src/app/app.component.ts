@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 import { Component } from '@angular/core';
-import * as $ from 'jquery';
 
 @Component({
   selector: 'mlocks-root',
