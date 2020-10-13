@@ -1,21 +1,13 @@
 'use strict';
 
 (function ($) {
-    
+
     /*------------------
         Slick Nav
     --------------------*/
     $(".main-menu").slicknav({
         prependTo: '#mobile-menu-wrap',
         allowParentLinks: true
-    });
-
-    /*------------------
-        Preloader
-    --------------------*/
-    $(window).on('load', function () {
-        $(".loader").fadeOut();
-        $("#preloder").delay(400).fadeOut("slow");
     });
 
     /*------------------

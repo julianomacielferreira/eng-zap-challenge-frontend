@@ -33,6 +33,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { PropertyCardComponent } from './components/property-card/property-card.component';
 import { PropertyDetailComponent } from './pages/property-detail/property-detail.component';
 import { PropertiesComponent } from './pages/properties/properties.component';
+import { PreloaderComponent } from './components/preloader/preloader.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { PropertiesComponent } from './pages/properties/properties.component';
     HomeComponent,
     PropertyCardComponent,
     PropertyDetailComponent,
-    PropertiesComponent
+    PropertiesComponent,
+    PreloaderComponent
   ],
   imports: [
     BrowserModule,
