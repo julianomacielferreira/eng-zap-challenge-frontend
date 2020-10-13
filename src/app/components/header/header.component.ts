@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2020 Juliano Maciel Ferreira.
+ * Copyright 2020 Martha Ribeiro Locks.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,14 +24,15 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'mlocks-banner',
-  templateUrl: './banner.component.html',
-  styleUrls: ['./banner.component.scss']
+  selector: 'mlocks-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.scss']
 })
-export class BannerComponent implements OnInit {
+export class HeaderComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+  }
 
 }

@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2020 Juliano Maciel Ferreira.
+ * Copyright 2020 Martha Ribeiro Locks.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,17 +21,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import { Component, OnInit } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-@Component({
-  selector: 'mlocks-banner',
-  templateUrl: './banner.component.html',
-  styleUrls: ['./banner.component.scss']
-})
-export class BannerComponent implements OnInit {
+import { HeaderComponent } from './header.component';
 
-  constructor() { }
+describe('HeaderComponent', () => {
+  let component: HeaderComponent;
+  let fixture: ComponentFixture<HeaderComponent>;
 
-  ngOnInit(): void { }
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [HeaderComponent]
+    })
+      .compileComponents();
+  });
 
-}
+  beforeEach(() => {
+    fixture = TestBed.createComponent(HeaderComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
