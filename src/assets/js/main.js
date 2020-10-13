@@ -3,21 +3,6 @@
 (function ($) {
 
     /*------------------
-        Nice Select
-    --------------------*/
-    $(document).ready(function () {
-        $('.filter-location').niceSelect();
-    });
-
-    $(document).ready(function () {
-        $('.filter-property').niceSelect();
-    });
-
-    $(document).ready(function () {
-        $('.date-select').niceSelect();
-    });
-
-    /*------------------
         Carousel Slider
     --------------------*/
     $('.slider-active').owlCarousel({
@@ -37,22 +22,6 @@
         nav: true,
         loop: true,
         navText: ["<i class='fa fa-angle-left'></i>", "<i class='fa fa-angle-right'></i>"]
-    });
-
-    /*--------------------------------
-        Price Slider
-    -----------------------------------*/
-    $("#slider-range").slider({
-        range: true,
-        min: 50,
-        max: 300,
-        step: 50,
-        value: 50,
-        values: [50, 300],
-        slide: function (event, ui) {
-            $('#slider-range .slider-left').text(ui.values[0] + 'k');
-            $('#slider-range .slider-right').text(ui.values[1] + 'k');
-        }
     });
 
 })(jQuery);

@@ -35,6 +35,7 @@ import { PropertyDetailComponent } from './pages/property-detail/property-detail
 import { PropertiesComponent } from './pages/properties/properties.component';
 import { PreloaderComponent } from './components/preloader/preloader.component';
 import { HeaderComponent } from './components/header/header.component';
+import { SearchFilterComponent } from './components/search-filter/search-filter.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { HeaderComponent } from './components/header/header.component';
     PropertyDetailComponent,
     PropertiesComponent,
     PreloaderComponent,
-    HeaderComponent
+    HeaderComponent,
+    SearchFilterComponent
   ],
   imports: [
     BrowserModule,
