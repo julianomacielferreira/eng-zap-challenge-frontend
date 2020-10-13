@@ -3,14 +3,6 @@
 (function ($) {
 
     /*------------------
-        Slick Nav
-    --------------------*/
-    $(".main-menu").slicknav({
-        prependTo: '#mobile-menu-wrap',
-        allowParentLinks: true
-    });
-
-    /*------------------
         Nice Select
     --------------------*/
     $(document).ready(function () {

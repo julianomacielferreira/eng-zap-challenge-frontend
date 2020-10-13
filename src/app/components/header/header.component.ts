@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 import { Component, OnInit } from '@angular/core';
+declare var $: any;
 
 @Component({
   selector: 'mlocks-header',
@@ -33,6 +34,14 @@ export class HeaderComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
+    /*------------------
+        Slick Nav
+    --------------------*/
+    $('.main-menu').slicknav({
+      prependTo: '#mobile-menu-wrap',
+      allowParentLinks: true
+    });
   }
 
 }
