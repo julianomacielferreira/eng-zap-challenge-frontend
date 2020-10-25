@@ -1,6 +1,5 @@
 <mlocks-banner></mlocks-banner>
 <mlocks-search-filter></mlocks-search-filter>
-<!-- Hotel Room Section Begin -->
 <section class="hotel-rooms spad">
   <div class="container">
     <div class="row">
@@ -28,7 +27,7 @@
           ></mlocks-property-card>
         </div>
       </ng-template>
-  
+
       <ng-template ngFor let-property [ngForOf]="listSellPropertiesForVivaReal">
         <div class="col-lg-4 col-md-6">
           <mlocks-property-card
@@ -40,4 +39,18 @@
     </div>
   </div>
 </section>
-<!-- Hotel Room Section End -->
+
+<!-- Popular Room Section Begin -->
+<section
+  class="popular-room set-bg p-in"
+  style="background-image: url('assets/img/bg-2.jpg')"
+>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 offset-lg-6">
+        <mlocks-property-carousel [listProperties]="listRandomProperties" ></mlocks-property-carousel>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Popular Room Section End -->

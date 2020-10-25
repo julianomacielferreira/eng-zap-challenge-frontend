@@ -21,36 +21,34 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import { Component, OnInit } from '@angular/core';
-import { PropertiesService } from './../../services/properties.service';
+import { Component, OnInit, Input } from '@angular/core';
 import { Property } from './../../models/property';
 
-
 @Component({
-	selector: 'mlocks-home',
-	templateUrl: './home.component.html',
-	styleUrls: ['./home.component.scss']
+  selector: 'mlocks-property-card-simple',
+  templateUrl: './property-card-simple.component.html',
+  styleUrls: ['./property-card-simple.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class PropertyCardSimpleComponent implements OnInit {
 
-	public listRentPropertiesForZAP: Array<Property> = [];
-	public listSellPropertiesForZAP: Array<Property> = [];
+  @Input()
+  public type: string;
 
-	public listRentPropertiesForVivaReal: Array<Property> = [];
-	public listSellPropertiesForVivaReal: Array<Property> = [];
+  @Input()
+  public property: Property;
 
-	public listRandomProperties: Array<Property> = [];
+  public IMAGE_INDEX = 0;
 
-	constructor(private propertiesService: PropertiesService) { }
+  constructor() { }
 
-	ngOnInit(): void {
+  ngOnInit(): void {
 
-		this.listRentPropertiesForZAP = this.propertiesService.listRentPropertiesForZAP(0, 3);
-		this.listSellPropertiesForZAP = this.propertiesService.listSellPropertiesForZAP(0, 3);
+    this.IMAGE_INDEX = this.getRandomInt(5);
+  }
 
-		this.listRentPropertiesForVivaReal = this.propertiesService.listRentPropertiesForVivaReal(0, 3);
-		this.listSellPropertiesForVivaReal = this.propertiesService.listSellPropertiesForVivaReal(0, 3);
+  private getRandomInt(max: number): number {
 
-		this.listRandomProperties = this.propertiesService.getRandomProperties(3);
-	}
+    return Math.floor(Math.random() * Math.floor(max));
+  }
+
 }

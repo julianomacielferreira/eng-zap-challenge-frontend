@@ -36,6 +36,8 @@ import { PropertiesComponent } from './pages/properties/properties.component';
 import { PreloaderComponent } from './components/preloader/preloader.component';
 import { HeaderComponent } from './components/header/header.component';
 import { SearchFilterComponent } from './components/search-filter/search-filter.component';
+import { PropertyCardSimpleComponent } from './components/property-card-simple/property-card-simple.component';
+import { PropertyCarouselComponent } from './components/property-carousel/property-carousel.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,9 @@ import { SearchFilterComponent } from './components/search-filter/search-filter.
     PropertiesComponent,
     PreloaderComponent,
     HeaderComponent,
-    SearchFilterComponent
+    SearchFilterComponent,
+    PropertyCardSimpleComponent,
+    PropertyCarouselComponent
   ],
   imports: [
     BrowserModule,

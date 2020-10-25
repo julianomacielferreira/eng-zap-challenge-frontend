@@ -21,36 +21,40 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import { Component, OnInit } from '@angular/core';
-import { PropertiesService } from './../../services/properties.service';
-import { Property } from './../../models/property';
-
+import { Component, OnInit, Input } from '@angular/core';
+import { Property } from 'src/app/models/property';
+declare var $: any;
 
 @Component({
-	selector: 'mlocks-home',
-	templateUrl: './home.component.html',
-	styleUrls: ['./home.component.scss']
+  selector: 'mlocks-property-carousel',
+  templateUrl: './property-carousel.component.html',
+  styleUrls: ['./property-carousel.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class PropertyCarouselComponent implements OnInit {
 
-	public listRentPropertiesForZAP: Array<Property> = [];
-	public listSellPropertiesForZAP: Array<Property> = [];
+  @Input()
+  public listProperties: Array<Property> = [];
 
-	public listRentPropertiesForVivaReal: Array<Property> = [];
-	public listSellPropertiesForVivaReal: Array<Property> = [];
+  constructor() { }
 
-	public listRandomProperties: Array<Property> = [];
+  ngOnInit(): void {
 
-	constructor(private propertiesService: PropertiesService) { }
+    this.startSlider();
+  }
 
-	ngOnInit(): void {
+  private startSlider(): void {
 
-		this.listRentPropertiesForZAP = this.propertiesService.listRentPropertiesForZAP(0, 3);
-		this.listSellPropertiesForZAP = this.propertiesService.listSellPropertiesForZAP(0, 3);
+    setTimeout(() => {
+      // Carousel Slider
+      $('.slider-active').owlCarousel({
+        items: 1,
+        dots: false,
+        nav: true,
+        loop: true,
+        navText: [`<i class='fa fa-angle-left'></i>`, `<i class='fa fa-angle-right'></i>`]
+      });
+    }, 100);
 
-		this.listRentPropertiesForVivaReal = this.propertiesService.listRentPropertiesForVivaReal(0, 3);
-		this.listSellPropertiesForVivaReal = this.propertiesService.listSellPropertiesForVivaReal(0, 3);
+  }
 
-		this.listRandomProperties = this.propertiesService.getRandomProperties(3);
-	}
 }

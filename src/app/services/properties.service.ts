@@ -44,6 +44,21 @@ export class PropertiesService {
     this.loadElegibleProperties();
   }
 
+  public getRandomProperties(limit: number): Array<Property> {
+
+    const randomProperties: Array<Property> = [];
+
+    for (let i = 0; i < limit; i++) {
+
+      const keys = Array.from(this.propertiesMap.keys());
+      const key = keys[Math.floor(Math.random() * keys.length)];
+
+      randomProperties.push(this.propertiesMap.get(key));
+    }
+
+    return randomProperties;
+  }
+
   public listPropertiesForZAP(start: number, end: number): Array<Property> {
 
     return this.propertiesForZAP.slice(start, end);
