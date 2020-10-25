@@ -26,8 +26,7 @@ import { Property } from './../../models/property';
 
 @Component({
 	selector: 'mlocks-property-card',
-	templateUrl: './property-card.component.html',
-	styleUrls: ['./property-card.component.scss']
+	templateUrl: './property-card.component.html'
 })
 export class PropertyCardComponent implements OnInit {
 

@@ -29,8 +29,7 @@ import { Property } from './../../models/property';
 
 @Component({
   selector: 'mlocks-properties',
-  templateUrl: './properties.component.html',
-  styleUrls: ['./properties.component.scss'],
+  templateUrl: './properties.component.html'
 })
 export class PropertiesComponent implements OnInit {
 

@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2020 Martha Ribeiro Locks.
+ * Copyright 2020 Juliano Maciel Ferreira.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -21,3 +21,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+import { Component, OnInit } from '@angular/core';
+
+@Component({
+  selector: 'mlocks-newsletter',
+  templateUrl: './newsletter.component.html'
+})
+export class NewsletterComponent implements OnInit {
+
+  constructor() { }
+
+  ngOnInit(): void {
+  }
+
+}

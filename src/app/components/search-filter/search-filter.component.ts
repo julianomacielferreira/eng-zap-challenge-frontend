@@ -26,8 +26,7 @@ declare var $: any;
 
 @Component({
   selector: 'mlocks-search-filter',
-  templateUrl: './search-filter.component.html',
-  styleUrls: ['./search-filter.component.scss']
+  templateUrl: './search-filter.component.html'
 })
 export class SearchFilterComponent implements OnInit {
 

@@ -28,8 +28,7 @@ import { PropertiesService } from 'src/app/services/properties.service';
 
 @Component({
   selector: 'mlocks-property-detail',
-  templateUrl: './property-detail.component.html',
-  styleUrls: ['./property-detail.component.scss']
+  templateUrl: './property-detail.component.html'
 })
 export class PropertyDetailComponent implements OnInit {
 

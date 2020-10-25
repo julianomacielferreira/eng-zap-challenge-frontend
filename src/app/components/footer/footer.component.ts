@@ -25,14 +25,13 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'mlocks-footer',
-  templateUrl: './footer.component.html',
-  styleUrls: ['./footer.component.scss']
+  templateUrl: './footer.component.html'
 })
 export class FooterComponent implements OnInit {
 
-	today: number = Date.now();
+  today: number = Date.now();
 
-	constructor() { }
+  constructor() { }
 
-	ngOnInit(): void { }
+  ngOnInit(): void { }
 }

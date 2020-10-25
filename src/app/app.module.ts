@@ -38,6 +38,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { SearchFilterComponent } from './components/search-filter/search-filter.component';
 import { PropertyCardSimpleComponent } from './components/property-card-simple/property-card-simple.component';
 import { PropertyCarouselComponent } from './components/property-carousel/property-carousel.component';
+import { NewsletterComponent } from './components/newsletter/newsletter.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { PropertyCarouselComponent } from './components/property-carousel/proper
     HeaderComponent,
     SearchFilterComponent,
     PropertyCardSimpleComponent,
-    PropertyCarouselComponent
+    PropertyCarouselComponent,
+    NewsletterComponent
   ],
   imports: [
     BrowserModule,

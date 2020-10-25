@@ -27,8 +27,7 @@ declare var $: any;
 
 @Component({
   selector: 'mlocks-property-carousel',
-  templateUrl: './property-carousel.component.html',
-  styleUrls: ['./property-carousel.component.scss']
+  templateUrl: './property-carousel.component.html'
 })
 export class PropertyCarouselComponent implements OnInit {
 
