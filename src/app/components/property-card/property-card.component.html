@@ -1,47 +1,64 @@
-<div class="card h-100">
-  <img class="card-img-top" src="{{ property.images[IMAGE_INDEX] }}" height="200" alt="" />
-  <div class="card-body">
-    <h4 class="card-title">
-      {{ property.pricingInfos.businessType }}
-    </h4>
-    <p class="card-text">
-      <span class="badge" [ngClass]="{
-          'badge-primary': type === 'ZAP',
-          'badge-info': type === 'VivaReal'
-        }">
-        {{ type }}
-      </span>
-      <br />
-      <ng-template [ngIf]="
-          property.pricingInfos.rentalTotalPrice &&
-          property.pricingInfos.businessType === 'RENTAL'
-        ">
-        <b>Rent Price:</b>
-        {{
-          property.pricingInfos.rentalTotalPrice | currency: "symbol":"$&nbsp;"
-        }}
-        <br />
-      </ng-template>
-      <ng-template [ngIf]="
-          property.pricingInfos.price &&
-          property.pricingInfos.businessType === 'SALE'
-        ">
-        <b>Price:</b>
-        {{ property.pricingInfos.price | currency: "symbol":"$&nbsp;" }} <br />
-      </ng-template>
-      <b>City:</b> {{ property.address.city }} <br />
-    </p>
+<div class="room-items">
+  <div
+    class="room-img set-bg"
+    style="background-image: url('{{ property.images[IMAGE_INDEX] }}');"
+  >
+    <a href="#" class="room-content">
+      <i class="flaticon-heart"></i>
+    </a>
   </div>
-  <div class="card-footer">
-    <a [routerLink]="[
+  <div class="room-text">
+    <div class="room-details">
+      <div class="room-title">
+        <h5>{{ property.address.city }}</h5>
+        <a href="#">
+          <i class="flaticon-placeholder"></i> <span>Location</span>
+        </a>
+        <a href="#" class="large-width">
+          <i class="flaticon-cursor"></i> <span>Show on Map</span>
+        </a>
+      </div>
+    </div>
+    <div class="room-features">
+      <div class="room-info">
+        <div class="size">
+          <p>Lot Size</p>
+          <img src="assets/icons/size.png" alt="" />
+          <i class="flaticon-bath"></i>
+          <span>{{ property.usableAreas }} sqft</span>
+        </div>
+        <div class="beds">
+          <p>Beds</p>
+          <img src="assets/icons/bed.png" alt="" />
+          <span>{{ property.bedrooms }}</span>
+        </div>
+        <div class="baths">
+          <p>Baths</p>
+          <img src="assets/icons/bath.png" alt="" />
+          <span>{{ property.bathrooms }}</span>
+        </div>
+        <div class="garage">
+          <p>Garage</p>
+          <img src="assets/icons/garage.png" alt="" />
+          <span>{{ property.parkingSpaces }}</span>
+        </div>
+      </div>
+    </div>
+    <div class="room-price">
+      <p>{{ property.pricingInfos.businessType }}</p>
+      <span>{{
+        property.pricingInfos.price | currency: "symbol":"$&nbsp;"
+      }}</span>
+    </div>
+    <a
+      [routerLink]="[
         '/property-detail',
         type === 'VivaReal' ? 'viva-real' : type.toLowerCase(),
         property.id
-      ]" class="btn" [ngClass]="{
-        'btn-primary': type === 'ZAP',
-        'btn-info': type === 'VivaReal'
-      }">
-      Details
+      ]"
+      class="site-btn btn-line"
+    >
+      View Property
     </a>
   </div>
 </div>

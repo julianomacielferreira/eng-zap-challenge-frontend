@@ -1,33 +1,43 @@
 <mlocks-banner></mlocks-banner>
 <mlocks-search-filter></mlocks-search-filter>
-<!-- Page Content -->
-<div class="container">
-  <!-- Page Features -->
-  <div class="row text-center">
-    <ng-template ngFor let-property [ngForOf]="listRentPropertiesForZAP">
-      <div class="col-lg-3 col-md-6 mb-4">
-        <mlocks-property-card [type]="'ZAP'" [property]="property"></mlocks-property-card>
-      </div>
-    </ng-template>
-
-    <ng-template ngFor let-property [ngForOf]="listSellPropertiesForZAP">
-      <div class="col-lg-3 col-md-6 mb-4">
-        <mlocks-property-card [type]="'ZAP'" [property]="property"></mlocks-property-card>
-      </div>
-    </ng-template>
-
-    <ng-template ngFor let-property [ngForOf]="listRentPropertiesForVivaReal">
-      <div class="col-lg-3 col-md-6 mb-4">
-        <mlocks-property-card [type]="'VivaReal'" [property]="property"></mlocks-property-card>
-      </div>
-    </ng-template>
-
-    <ng-template ngFor let-property [ngForOf]="listSellPropertiesForVivaReal">
-      <div class="col-lg-3 col-md-6 mb-4">
-        <mlocks-property-card [type]="'VivaReal'" [property]="property"></mlocks-property-card>
-      </div>
-    </ng-template>
+<!-- Hotel Room Section Begin -->
+<section class="hotel-rooms spad">
+  <div class="container">
+    <div class="row">
+      <ng-template ngFor let-property [ngForOf]="listRentPropertiesForZAP">
+        <div class="col-lg-4 col-md-6">
+          <mlocks-property-card
+            [type]="'ZAP'"
+            [property]="property"
+          ></mlocks-property-card>
+        </div>
+      </ng-template>
+      <ng-template ngFor let-property [ngForOf]="listSellPropertiesForZAP">
+        <div class="col-lg-4 col-md-6">
+          <mlocks-property-card
+            [type]="'ZAP'"
+            [property]="property"
+          ></mlocks-property-card>
+        </div>
+      </ng-template>
+      <ng-template ngFor let-property [ngForOf]="listRentPropertiesForVivaReal">
+        <div class="col-lg-4 col-md-6">
+          <mlocks-property-card
+            [type]="'VivaReal'"
+            [property]="property"
+          ></mlocks-property-card>
+        </div>
+      </ng-template>
+  
+      <ng-template ngFor let-property [ngForOf]="listSellPropertiesForVivaReal">
+        <div class="col-lg-4 col-md-6">
+          <mlocks-property-card
+            [type]="'VivaReal'"
+            [property]="property"
+          ></mlocks-property-card>
+        </div>
+      </ng-template>
+    </div>
   </div>
-  <!-- /.row -->
-</div>
-<!-- /.container -->
+</section>
+<!-- Hotel Room Section End -->

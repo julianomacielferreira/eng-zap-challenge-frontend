@@ -42,11 +42,11 @@ export class HomeComponent implements OnInit {
 
 	ngOnInit(): void {
 
-		this.listRentPropertiesForZAP = this.propertiesService.listRentPropertiesForZAP(0, 2);
-		this.listSellPropertiesForZAP = this.propertiesService.listSellPropertiesForZAP(0, 2);
+		this.listRentPropertiesForZAP = this.propertiesService.listRentPropertiesForZAP(0, 3);
+		this.listSellPropertiesForZAP = this.propertiesService.listSellPropertiesForZAP(0, 3);
 
-		this.listRentPropertiesForVivaReal = this.propertiesService.listRentPropertiesForVivaReal(0, 2);
-		this.listSellPropertiesForVivaReal = this.propertiesService.listSellPropertiesForVivaReal(0, 2);
+		this.listRentPropertiesForVivaReal = this.propertiesService.listRentPropertiesForVivaReal(0, 3);
+		this.listSellPropertiesForVivaReal = this.propertiesService.listSellPropertiesForVivaReal(0, 3);
 	}
 
 }
